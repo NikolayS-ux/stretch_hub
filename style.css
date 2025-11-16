@@ -195,6 +195,27 @@ p a {
         inset -4px -4px 8px var(--neo-light-shadow);
 }
 
+/* ****************************************************** */
+/* НОВЫЕ СТИЛИ ДЛЯ ЦЕНТРИРОВАНИЯ БОЛЬШИХ КНОПОК ОПЛАТЫ */
+/* ****************************************************** */
+
+.center-container {
+    text-align: center;
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+}
+
+/* Адаптируем большие кнопки для центрирования, ограничивая их ширину */
+.action-button.large {
+    max-width: 350px; 
+    margin-left: auto;
+    margin-right: auto;
+    /* Важно: сохраняем display: block, чтобы max-width и margin auto работали */
+    display: block; 
+}
+
+/* ****************************************************** */
+
 /* ФУТЕР И СПЕЦИФИКА */
 #schedule-container {
     margin: 20px 0;

@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const authView = document.getElementById('auth-view');
     const contentView = document.getElementById('detox-content-view');
     
-    // Временный "пароль" для проверки дизайна
+    // Временный "пароль" для проверки дизайна.
+    // В будущем заменится на серверную проверку.
     const MOCK_ACCESS_CODE = 'LADY2025'; 
 
     // 1. ФУНКЦИЯ ПЕРЕКЛЮЧЕНИЯ ЭКРАНОВ
@@ -74,8 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (authView) authView.classList.add('hidden');
                     if (contentView) contentView.classList.remove('hidden');
                 }, 1000);
-                
-                // В будущем: здесь можно добавить код для загрузки контента вашего курса
 
             } else {
                 // Ошибка

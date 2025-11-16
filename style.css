@@ -245,23 +245,24 @@ p a {
 }
 
 /* =========================================================
-// СТИЛИ СОЦСЕТЕЙ (Адаптация в сетку 2x3)
+// СТИЛИ СОЦСЕТЕЙ (Адаптация в сетку 2x3) - ИСПРАВЛЕНО
 // ========================================================= */
 
 .social-links-grid {
     display: grid;
     /* Создаем 2 колонки одинаковой ширины */
     grid-template-columns: 1fr 1fr; 
-    gap: 10px; /* Расстояние между кнопками */
+    gap: 8px; /* НЕМНОГО УМЕНЬШИЛИ ОТСТУП */
     margin-bottom: 20px;
 }
 
 .social-button {
     /* Переопределяем ширину, чтобы она вписывалась в сетку */
     width: auto; 
-    padding: 10px 5px; /* Делаем кнопки чуть компактнее */
-    margin: 0; /* Убираем вертикальные маржины, так как есть gap */
-    font-size: 0.9em;
+    padding: 8px 3px; /* СДЕЛАЛИ КНОПКИ БОЛЕЕ КОМПАКТНЫМИ */
+    margin: 0; 
+    font-size: 0.85em; /* НЕМНОГО УМЕНЬШИЛИ ШРИФТ */
+    white-space: normal; /* Разрешаем перенос текста, если он не помещается */
 }
 
 /* ЦВЕТА КНОПОК */
@@ -274,7 +275,7 @@ p a {
     color: white;
 }
 .site-btn {
-    background-color: var(--neo-bg-color); /* Используем фоновый цвет для "Сайт" */
+    background-color: var(--neo-bg-color); 
     color: var(--primary-color);
     border: 1px solid var(--primary-color);
 }
@@ -283,7 +284,7 @@ p a {
     color: white;
 }
 .ru-btn {
-    background-color: #ff8000; /* Яркий оранжевый/коралловый */
+    background-color: #ff8000; 
     color: white;
 }
 .dzen-btn {

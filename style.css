@@ -1,5 +1,5 @@
 /* =========================================================
-// ПОЛНЫЙ КОД ДЛЯ LADY STRETCH HUB - style.css
+// ПОЛНЫЙ КОД ДЛЯ LADY STRETCH HUB - style.css (Исправлена адаптация)
 // НЕОМОРФИЗМ С МЯГКИМИ ФИРМЕННЫМИ ЦВЕТАМИ (Лаванда)
 // ========================================================= */
 
@@ -73,9 +73,18 @@ p a {
     z-index: 10;
 }
 
+/* !!! ИСПРАВЛЕНИЕ 1: АДАПТАЦИЯ ЛОГОТИПА !!! */
+#main-header img {
+    max-width: 100%;
+    height: 50px; /* Фиксированная высота */
+    width: auto;
+    object-fit: contain; /* Сохраняет пропорции, предотвращая "квадратность" */
+}
+
+
 /* БАННЕР */
 #main-banner-container {
-    width: 100%;
+    width: 100%; /* ГАРАНТИРУЕТ 100% ШИРИНЫ КОНТЕЙНЕРА */
     height: 180px; 
     margin-bottom: 20px;
     border-radius: var(--border-radius);
@@ -86,9 +95,9 @@ p a {
 }
 
 #main-banner-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
+    width: 100%; /* Изображение занимает 100% ширины контейнера */
+    height: 100%; /* Изображение занимает 100% высоты контейнера */
+    object-fit: cover; /* Обрезает изображение, чтобы оно поместилось, устраняя "огромность" */
     display: block;
 }
 
@@ -165,95 +174,4 @@ p a {
 .back-button:active,
 .social-button:active {
     box-shadow: 
-        inset 4px 4px 8px var(--neo-dark-shadow),
-        inset -4px -4px 8px var(--neo-light-shadow);
-    color: var(--primary-color); 
-}
-
-/* ФИРМЕННЫЙ МЯГКИЙ АКЦЕНТ */
-.primary-btn {
-    background-color: var(--accent-color); 
-    color: white; 
-    box-shadow: 
-        5px 5px 10px rgba(156, 39, 176, 0.2), 
-        -5px -5px 10px var(--neo-light-shadow);
-}
-
-.primary-btn:hover,
-.primary-btn:active {
-    background-color: #b366ff; 
-    box-shadow: 
-        inset 4px 4px 8px rgba(156, 39, 176, 0.2),
-        inset -4px -4px 8px var(--neo-light-shadow);
-}
-
-/* ФУТЕР И СПЕЦИФИКА */
-#schedule-container {
-    margin: 20px 0;
-    min-height: 500px;
-    box-shadow: 
-        inset 5px 5px 10px var(--neo-dark-shadow),
-        inset -5px -5px 10px var(--neo-light-shadow);
-    padding: 15px;
-    border-radius: var(--border-radius);
-    overflow: hidden; 
-}
-
-#footer-nav {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    max-width: 450px;
-    padding: 10px 0;
-    position: fixed; 
-    bottom: 0;
-    background-color: var(--neo-bg-color);
-    z-index: 10;
-    box-shadow: 
-        0 -5px 10px var(--neo-dark-shadow);
-}
-
-.nav-button {
-    width: 30%;
-    padding: 10px 5px;
-    margin: 0 5px;
-    font-size: 0.8em;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    background-color: var(--neo-bg-color);
-    color: var(--text-color);
-    box-shadow: 
-        3px 3px 6px var(--neo-dark-shadow),
-        -3px -3px 6px var(--neo-light-shadow);
-    transition: all 0.2s ease-in-out;
-}
-
-.nav-button.active {
-    box-shadow: 
-        inset 3px 3px 6px var(--neo-dark-shadow),
-        inset -3px -3px 6px var(--neo-light-shadow);
-    color: var(--primary-color);
-}
-
-/* СТИЛИ СОЦСЕТЕЙ */
-.social-links {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.tg-btn {
-    background-color: #2aabee;
-    color: white;
-}
-.vk-btn {
-    background-color: #4a76a8;
-    color: white;
-}
-.tg-btn, .vk-btn {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-}
-.tg-btn:active, .vk-btn:active {
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
-}
+        inset 4px 4px 8px var(--neo-dark

@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lady Stretch Сыктывкар — Хаб Ресурсов</title>
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,7 +23,7 @@
             
             <div id="quick-links">
                 <button class="quick-link-btn action-button" data-target-screen="screen-schedule">📅 Расписание и запись</button>
-                <button class="quick-link-btn action-button" data-target-screen="screen-payment">💰 Оплата Абонементов</button>
+                <button class="quick-link-btn action-button primary-btn" data-target-screen="screen-payment">💰 Оплата Абонементов</button>
                 <button class="quick-link-btn action-button" data-target-screen="screen-motivation">💡 Мотивационный Блок (Курсы)</button>
             </div>
         </section>
@@ -29,7 +32,7 @@
             <h2>Онлайн Расписание и Запись</h2>
             
             <div id="schedule-container" style="min-height: 500px;">
-                <p>Если вы видите эту строку, пожалуйста, вставьте сюда ваш код интеграции расписания.</p>
+                <p>Пожалуйста, вставьте сюда ваш код интеграции расписания, как только найдете его. Пока здесь заглушка.</p>
             </div>
 
             <button class="back-button action-button" data-target-screen="screen-home">← Назад</button>
@@ -49,11 +52,21 @@
 
         <section id="screen-motivation" class="screen hidden">
             <h2>Мотивационные Курсы и Челленджи</h2>
-            <p>Здесь будут размещены ваши закрытые курсы (например, Детокс).</p>
             
-            <div id="detox-app-integration">
-                <button class="action-button primary-btn">Открыть Курс "Детокс"</button>
+            <div id="auth-view">
+                <p>Для доступа к курсу "Детокс" и другим закрытым материалам, пожалуйста, введите ваш уникальный код доступа.</p>
+                
+                <div class="auth-form-container">
+                    <input type="text" id="access-code" placeholder="Ваш уникальный код" required maxlength="10" class="neo-input">
+                    <button id="auth-button" class="action-button primary-btn">Получить Доступ</button>
+                    <p id="auth-message" style="margin-top: 15px;"></p>
+                </div>
             </div>
+            
+            <div id="detox-content-view" class="hidden">
+                <h3>Добро пожаловать в Детокс-курс!</h3>
+                <p>Курс успешно загружен. Воспользуйтесь меню для навигации.</p>
+                </div>
 
             <button class="back-button action-button" data-target-screen="screen-home">← Назад</button>
         </section>

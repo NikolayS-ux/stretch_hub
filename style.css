@@ -1,6 +1,6 @@
 /* =========================================================
 // ПОЛНЫЙ КОД ДЛЯ LADY STRETCH HUB - style.css
-// НЕОМОРФИЗМ С ФИРМЕННЫМИ ЦВЕТАМИ
+// НЕОМОРФИЗМ С ФИРМЕННЫМИ ФИОЛЕТОВЫМИ ЦВЕТАМИ
 // ========================================================= */
 
 :root {
@@ -27,7 +27,7 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    padding-top: 20px; /* Отступ сверху для шапки */
+    padding-top: 85px; /* Отступ сверху для шапки */
     padding-bottom: 70px; /* Отступ снизу для футера */
 }
 
@@ -54,7 +54,6 @@ p a {
     font-weight: bold;
 }
 
-
 /* ШАПКА */
 #main-header {
     width: 100%;
@@ -75,7 +74,6 @@ p a {
     z-index: 10;
 }
 
-
 /* ЭКРАНЫ */
 .screen {
     width: 100%;
@@ -92,7 +90,35 @@ p a {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
+}
+
+/* ПОЛЯ ВВОДА (INPUT) */
+.neo-input {
+    width: 100%;
+    padding: 15px;
+    margin: 15px 0;
+    border: none;
+    border-radius: 12px;
+    font-size: 1em;
+    color: var(--text-color);
+    background-color: var(--neo-bg-color);
+    box-sizing: border-box;
+    
+    /* ВДАВЛЕННЫЙ ЭФФЕКТ (Обычное состояние для поля ввода) */
+    box-shadow: 
+        inset 5px 5px 10px var(--neo-dark-shadow),
+        inset -5px -5px 10px var(--neo-light-shadow);
+    
+    transition: all 0.2s ease-in-out;
+}
+
+.neo-input:focus {
+    outline: none;
+    /* Усиление вдавленного эффекта при фокусе */
+    box-shadow: 
+        inset 2px 2px 4px var(--neo-dark-shadow),
+        inset -2px -2px 4px var(--neo-light-shadow);
 }
 
 
@@ -126,7 +152,8 @@ p a {
 .action-button:hover,
 .action-button:active,
 .quick-link-btn:active,
-.back-button:active {
+.back-button:active,
+.social-button:active {
     box-shadow: 
         inset 4px 4px 8px var(--neo-dark-shadow),
         inset -4px -4px 8px var(--neo-light-shadow);
@@ -162,7 +189,7 @@ p a {
         inset -5px -5px 10px var(--neo-light-shadow);
     padding: 15px;
     border-radius: var(--border-radius);
-    overflow: hidden; /* Важно для iframe расписания */
+    overflow: hidden; 
 }
 
 /* ФУТЕР-НАВИГАЦИЯ */
@@ -204,7 +231,6 @@ p a {
         inset -3px -3px 6px var(--neo-light-shadow);
     color: var(--primary-color);
 }
-
 
 /* СТИЛИ СОЦСЕТЕЙ */
 .social-links {

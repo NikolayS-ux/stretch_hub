@@ -244,13 +244,27 @@ p a {
     color: var(--primary-color);
 }
 
-/* СТИЛИ СОЦСЕТЕЙ */
-.social-links {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+/* =========================================================
+// СТИЛИ СОЦСЕТЕЙ (Адаптация в сетку 2x3)
+// ========================================================= */
+
+.social-links-grid {
+    display: grid;
+    /* Создаем 2 колонки одинаковой ширины */
+    grid-template-columns: 1fr 1fr; 
+    gap: 10px; /* Расстояние между кнопками */
+    margin-bottom: 20px;
 }
 
+.social-button {
+    /* Переопределяем ширину, чтобы она вписывалась в сетку */
+    width: auto; 
+    padding: 10px 5px; /* Делаем кнопки чуть компактнее */
+    margin: 0; /* Убираем вертикальные маржины, так как есть gap */
+    font-size: 0.9em;
+}
+
+/* ЦВЕТА КНОПОК */
 .tg-btn {
     background-color: #2aabee;
     color: white;
@@ -259,9 +273,28 @@ p a {
     background-color: #4a76a8;
     color: white;
 }
-.tg-btn, .vk-btn {
+.site-btn {
+    background-color: var(--neo-bg-color); /* Используем фоновый цвет для "Сайт" */
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+.yt-btn {
+    background-color: #ff0000;
+    color: white;
+}
+.ru-btn {
+    background-color: #ff8000; /* Яркий оранжевый/коралловый */
+    color: white;
+}
+.dzen-btn {
+    background-color: #000000;
+    color: white;
+}
+
+/* Общие тени */
+.social-button {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
-.tg-btn:active, .vk-btn:active {
+.social-button:active {
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
 }

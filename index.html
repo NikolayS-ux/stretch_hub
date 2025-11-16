@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lady Stretch Сыктывкар — Хаб Ресурсов</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header id="main-header">
+        <img src="img/logo.png" alt="Lady Stretch Сыктывкар" style="max-height: 50px;">
+    </header>
+
+    <main id="app-container">
+        
+        <section id="screen-home" class="screen active">
+            <h2>Добро пожаловать в хаб Lady Stretch!</h2>
+            <p>Ваши самые важные ресурсы и ссылки в одном месте.</p>
+            
+            <div id="quick-links">
+                <button class="quick-link-btn action-button" data-target-screen="screen-schedule">📅 Расписание и запись</button>
+                <button class="quick-link-btn action-button" data-target-screen="screen-payment">💰 Оплата Абонементов</button>
+                <button class="quick-link-btn action-button" data-target-screen="screen-motivation">💡 Мотивационный Блок (Курсы)</button>
+            </div>
+        </section>
+
+        <section id="screen-schedule" class="screen hidden">
+            <h2>Онлайн Расписание и Запись</h2>
+            
+            <div id="schedule-container" style="min-height: 500px;">
+                <p>Если вы видите эту строку, пожалуйста, вставьте сюда ваш код интеграции расписания.</p>
+            </div>
+
+            <button class="back-button action-button" data-target-screen="screen-home">← Назад</button>
+        </section>
+
+        <section id="screen-payment" class="screen hidden">
+            <h2>Оплата Абонементов</h2>
+            <p>Выберите удобный способ оплаты и тариф:</p>
+            
+            <div class="payment-options">
+                <a href="ВАША_ССЫЛКА_НА_ПЛАТЕЖНУЮ_СИСТЕМУ" target="_blank" class="action-button large primary-btn">Оплатить онлайн</a>
+                <p>Если возникли вопросы с оплатой, напишите нам в <a href="ВАША_ССЫЛКА_НА_ТГ_ЧАТ" target="_blank">Telegram</a>.</p>
+            </div>
+
+            <button class="back-button action-button" data-target-screen="screen-home">← Назад</button>
+        </section>
+
+        <section id="screen-motivation" class="screen hidden">
+            <h2>Мотивационные Курсы и Челленджи</h2>
+            <p>Здесь будут размещены ваши закрытые курсы (например, Детокс).</p>
+            
+            <div id="detox-app-integration">
+                <button class="action-button primary-btn">Открыть Курс "Детокс"</button>
+            </div>
+
+            <button class="back-button action-button" data-target-screen="screen-home">← Назад</button>
+        </section>
+
+        <section id="screen-contacts" class="screen hidden">
+            <h2>Контакты и Социальные сети</h2>
+            <div class="social-links">
+                <a href="ВАША_ССЫЛКА_НА_ТГ_КАНАЛ" target="_blank" class="social-button action-button tg-btn">Telegram Канал</a>
+                <a href="ВАША_ССЫЛКА_НА_ВК" target="_blank" class="social-button action-button vk-btn">ВКонтакте</a>
+                </div>
+            
+            <button class="back-button action-button" data-target-screen="screen-home">← Назад</button>
+        </section>
+
+    </main>
+
+    <footer id="footer-nav">
+        <button class="nav-button active" data-target="screen-home">🏠 Главная</button>
+        <button class="nav-button" data-target="screen-schedule">📅 Расписание</button>
+        <button class="nav-button" data-target="screen-contacts">💬 Контакты</button>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

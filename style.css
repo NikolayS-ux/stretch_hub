@@ -256,6 +256,11 @@ p a {
     margin-bottom: 20px;
 }
 
+/* Стиль для кнопки, которая должна занимать всю ширину в сетке 2xN */
+.full-width-grid {
+    grid-column: 1 / span 2; /* Занимает обе колонки */
+}
+
 .social-button {
     /* Переопределяем ширину, чтобы она вписывалась в сетку */
     width: auto; 
@@ -265,7 +270,7 @@ p a {
     white-space: normal; /* Разрешаем перенос текста, если он не помещается */
 }
 
-/* ЦВЕТА КНОПОК */
+/* ЦВЕТА СОЦСЕТЕЙ */
 .tg-btn {
     background-color: #2aabee;
     color: white;
@@ -291,9 +296,22 @@ p a {
     background-color: #000000;
     color: white;
 }
-/* НОВАЯ КНОПКА WHATSAPP */
 .wa-btn {
     background-color: #25D366; 
+    color: white;
+}
+
+/* НОВЫЕ ЦВЕТА ДЛЯ ПРИЛОЖЕНИЙ */
+.app-store-btn {
+    background-color: #007aff; /* Синий Apple */
+    color: white;
+}
+.ru-store-btn {
+    background-color: #2d2d2d; /* Темный RuStore */
+    color: white;
+}
+.app-gallery-btn {
+    background-color: #e20023; /* Красный Huawei */
     color: white;
 }
 

@@ -1,44 +1,46 @@
 // =========================================================
 // ПОЛНЫЙ КОД ДЛЯ LADY STRETCH HUB - script.js
-// УПРАВЛЕНИЕ НАВИГАЦИЕЙ И ЭКРАНАМИ
+// УПРАВЛЕНИЕ НАВИГАЦИЕЙ И АУТЕНТИФИКАЦИЕЙ
 // =========================================================
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // Получаем все элементы, которые переключают экраны
-    // Сюда входят: .nav-button (футер), .quick-link-btn (Главная), .back-button (Назад)
+    // Элементы навигации
     const navButtons = document.querySelectorAll('.nav-button, .quick-link-btn, .back-button');
-    
-    // Флаг для определения, какой экран является "корневым" (по умолчанию Главная)
     const ROOT_SCREEN = 'screen-home';
 
-    // Функция переключения экранов
+    // Элементы для Мотивационного Блока
+    const authButton = document.getElementById('auth-button');
+    const accessCodeInput = document.getElementById('access-code');
+    const authMessage = document.getElementById('auth-message');
+    const authView = document.getElementById('auth-view');
+    const contentView = document.getElementById('detox-content-view');
+    
+    // Временный "пароль" для проверки дизайна
+    const MOCK_ACCESS_CODE = 'LADY2025'; 
+
+    // 1. ФУНКЦИЯ ПЕРЕКЛЮЧЕНИЯ ЭКРАНОВ
     function switchScreen(targetId) {
         
-        // 1. Скрываем все экраны
+        // Скрываем все экраны
         document.querySelectorAll('.screen').forEach(screen => {
             screen.classList.remove('active');
             screen.classList.add('hidden');
         });
         
-        // 2. Показываем целевой экран
+        // Показываем целевой экран
         const targetScreen = document.getElementById(targetId);
         if (targetScreen) {
             targetScreen.classList.remove('hidden');
             targetScreen.classList.add('active');
         }
 
-        // 3. Обновляем активную кнопку в нижнем футере
+        // Обновляем активную кнопку в нижнем футере
         document.querySelectorAll('.nav-button').forEach(btn => {
             const btnTarget = btn.getAttribute('data-target');
-            
-            // Проверяем, если текущая цель или ее "родитель" соответствует кнопке футера
-            // Например, если мы на экране motivation, кнопка home все равно должна быть неактивна,
-            // если только motivation не является частью home (что не наш случай)
             if (btnTarget === targetId) {
                 btn.classList.add('active');
             } else if (btnTarget === ROOT_SCREEN && targetId === ROOT_SCREEN) {
-                // Особый случай для Главной
                 btn.classList.add('active');
             } else {
                 btn.classList.remove('active');
@@ -46,29 +48,44 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Обработчик для всех навигационных кнопок
+    // 2. ОБРАБОТЧИК НАВИГАЦИОННЫХ КНОПОК
     navButtons.forEach(button => {
         button.addEventListener('click', function() {
-            // Кнопки футера используют data-target. 
-            // Кнопки quick-link-btn и back-button используют data-target-screen.
             const targetId = this.getAttribute('data-target') || this.getAttribute('data-target-screen');
             if (targetId) {
                 switchScreen(targetId);
             }
         });
     });
+    
+    // 3. ЛОГИКА АУТЕНТИФИКАЦИИ (Мотивационный Блок)
+    if (authButton) {
+        authButton.addEventListener('click', async () => {
+            const code = accessCodeInput.value.trim().toUpperCase();
 
-    // 5. Инициализация: Убедимся, что при загрузке активен только ROOT_SCREEN
-    switchScreen(ROOT_SCREEN);
-    
-    // ДОПОЛНИТЕЛЬНАЯ ЛОГИКА (Для будущих обновлений)
-    
-    // Если в будущем будем добавлять логику Детокс-курса
-    const motivationButton = document.querySelector('#screen-motivation .action-button.primary-btn');
-    if (motivationButton) {
-        motivationButton.addEventListener('click', () => {
-            alert('Здесь будет экран входа или запуска Детокс-курса.');
-            // В будущем здесь будет вызов функции запуска детокс-приложения
+            if (code === MOCK_ACCESS_CODE) {
+                // Успех
+                authMessage.textContent = '✅ Доступ разрешен! Загрузка курса...';
+                authMessage.style.color = 'var(--primary-color)';
+                authButton.disabled = true;
+
+                setTimeout(() => {
+                    // Скрываем форму входа и показываем контент
+                    if (authView) authView.classList.add('hidden');
+                    if (contentView) contentView.classList.remove('hidden');
+                }, 1000);
+                
+                // В будущем: здесь можно добавить код для загрузки контента вашего курса
+
+            } else {
+                // Ошибка
+                authMessage.textContent = '❌ Неверный код доступа.';
+                authMessage.style.color = 'var(--accent-color)';
+                authButton.disabled = false;
+            }
         });
     }
+
+    // 4. ИНИЦИАЛИЗАЦИЯ
+    switchScreen(ROOT_SCREEN);
 });

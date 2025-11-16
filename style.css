@@ -1,6 +1,5 @@
 /* =========================================================
-// ПОЛНЫЙ КОД ДЛЯ LADY STRETCH HUB - style.css
-// НЕОМОРФИЗМ С ФИРМЕННЫМИ ФИОЛЕТОВЫМИ ЦВЕТАМИ
+// ПОЛНЫЙ КОД ДЛЯ LADY STRETCH HUB - style.css (МЯГКИЕ АКЦЕНТЫ)
 // ========================================================= */
 
 :root {
@@ -9,9 +8,9 @@
     --neo-light-shadow: #f9ffff; /* Светлая тень (верх, лево) */
     --neo-dark-shadow: #a3b1c6; /* Темная тень (низ, право) */
     
-    /* Фирменные цвета Lady Stretch */
-    --primary-color: #9c27b0; /* Глубокий фиолетовый (Основной) */
-    --accent-color: #e91e63; /* Яркий акцент (Малиновый/Розовый) */
+    /* Фирменные цвета Lady Stretch (СМЕНА ЦВЕТА) */
+    --primary-color: #7b1fa2; /* Глубокий, но приглушенный фиолетовый для текста */
+    --accent-color: #cc66ff; /* СВЕТЛЫЙ, МЯГКИЙ ФИОЛЕТОВЫЙ для кнопок */
     --text-color: #3e3e3e;
 
     --border-radius: 20px;
@@ -27,8 +26,8 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    padding-top: 85px; /* Отступ сверху для шапки */
-    padding-bottom: 70px; /* Отступ снизу для футера */
+    padding-top: 85px; 
+    padding-bottom: 70px; 
 }
 
 #app-container {
@@ -40,21 +39,20 @@ body {
 
 /* ОБЩИЕ ЭЛЕМЕНТЫ */
 h2 {
-    color: var(--primary-color);
+    color: var(--primary-color); /* Используем темный фиолетовый для лучшей читаемости */
     text-align: center;
     margin-bottom: 25px;
     font-size: 1.5em;
-    /* Мягкий, вдавленный текст */
     text-shadow: 1px 1px 2px var(--neo-dark-shadow);
 }
 
 p a {
-    color: var(--accent-color); /* Используем яркий акцент для гиперссылок */
+    color: var(--accent-color); /* Используем мягкий фиолетовый для гиперссылок */
     text-decoration: none;
     font-weight: bold;
 }
 
-/* ШАПКА */
+/* ШАПКА, ЭКРАНЫ, INPUT - (Без изменений, так как они не цветные) */
 #main-header {
     width: 100%;
     max-width: 450px;
@@ -63,25 +61,22 @@ p a {
     justify-content: center;
     align-items: center;
     background-color: var(--neo-bg-color);
-    /* Выдавленная форма */
     box-shadow: 
         5px 5px 10px var(--neo-dark-shadow),
         -5px -5px 10px var(--neo-light-shadow);
     border-radius: var(--border-radius);
     margin-bottom: 20px;
-    position: fixed; /* Закрепляем шапку */
+    position: fixed; 
     top: 0;
     z-index: 10;
 }
 
-/* ЭКРАНЫ */
 .screen {
     width: 100%;
     background-color: var(--neo-bg-color);
     padding: 30px 20px;
     border-radius: var(--border-radius);
     margin-bottom: 20px;
-    /* Выдавленная форма */
     box-shadow: 
         8px 8px 16px var(--neo-dark-shadow),
         -8px -8px 16px var(--neo-light-shadow);
@@ -93,7 +88,6 @@ p a {
     display: none !important;
 }
 
-/* ПОЛЯ ВВОДА (INPUT) */
 .neo-input {
     width: 100%;
     padding: 15px;
@@ -104,25 +98,21 @@ p a {
     color: var(--text-color);
     background-color: var(--neo-bg-color);
     box-sizing: border-box;
-    
-    /* ВДАВЛЕННЫЙ ЭФФЕКТ (Обычное состояние для поля ввода) */
     box-shadow: 
         inset 5px 5px 10px var(--neo-dark-shadow),
         inset -5px -5px 10px var(--neo-light-shadow);
-    
     transition: all 0.2s ease-in-out;
 }
 
 .neo-input:focus {
     outline: none;
-    /* Усиление вдавленного эффекта при фокусе */
     box-shadow: 
         inset 2px 2px 4px var(--neo-dark-shadow),
         inset -2px -2px 4px var(--neo-light-shadow);
 }
 
 
-/* КНОПКИ (КЛЮЧЕВОЙ ЭЛЕМЕНТ НЕОМОРФИЗМА) */
+/* КНОПКИ */
 .action-button, 
 .quick-link-btn, 
 .social-button {
@@ -139,16 +129,12 @@ p a {
     text-decoration: none;
     display: block;
     text-align: center;
-
-    /* ВЫДАВЛЕННЫЙ ЭФФЕКТ (Обычное состояние) */
     box-shadow: 
         6px 6px 12px var(--neo-dark-shadow),
         -6px -6px 12px var(--neo-light-shadow);
-    
     transition: all 0.2s ease-in-out;
 }
 
-/* ВДАВЛЕННЫЙ ЭФФЕКТ (При нажатии) */
 .action-button:hover,
 .action-button:active,
 .quick-link-btn:active,
@@ -160,30 +146,28 @@ p a {
     color: var(--primary-color);
 }
 
-/* ФИРМЕННЫЙ ФИОЛЕТОВЫЙ АКЦЕНТ */
+/* ФИРМЕННЫЙ МЯГКИЙ АКЦЕНТ */
 .primary-btn {
-    background-color: var(--primary-color);
+    background-color: var(--accent-color); /* Мягкий фиолетовый для кнопок */
     color: white;
+    /* Тень тоже делаем мягче, используя rgba */
     box-shadow: 
-        5px 5px 10px rgba(156, 39, 176, 0.4), /* Фиолетовая тень */
+        5px 5px 10px rgba(156, 39, 176, 0.2), 
         -5px -5px 10px var(--neo-light-shadow);
 }
 
 .primary-btn:hover,
 .primary-btn:active {
-    background-color: #7b1fa2; /* Чуть темнее фиолетовый */
+    background-color: #a847d0; /* Чуть темнее */
     box-shadow: 
-        inset 4px 4px 8px rgba(156, 39, 176, 0.4),
+        inset 4px 4px 8px rgba(156, 39, 176, 0.2),
         inset -4px -4px 8px var(--neo-light-shadow);
 }
 
-/* СПЕЦИФИЧЕСКИЕ БЛОКИ */
-
-/* Контейнер для расписания - ВДАВЛЕННАЯ ОБЛАСТЬ */
+/* ФУТЕР И СПЕЦИФИКА */
 #schedule-container {
     margin: 20px 0;
     min-height: 500px;
-    /* Вдавленная область */
     box-shadow: 
         inset 5px 5px 10px var(--neo-dark-shadow),
         inset -5px -5px 10px var(--neo-light-shadow);
@@ -192,18 +176,16 @@ p a {
     overflow: hidden; 
 }
 
-/* ФУТЕР-НАВИГАЦИЯ */
 #footer-nav {
     display: flex;
     justify-content: space-around;
     width: 100%;
     max-width: 450px;
     padding: 10px 0;
-    position: fixed; /* Закрепляем футер */
+    position: fixed; 
     bottom: 0;
     background-color: var(--neo-bg-color);
     z-index: 10;
-    /* Выдавленная форма */
     box-shadow: 
         0 -5px 10px var(--neo-dark-shadow);
 }
@@ -225,20 +207,19 @@ p a {
 }
 
 .nav-button.active {
-    /* ВДАВЛЕННЫЙ АКТИВНЫЙ ЭФФЕКТ */
     box-shadow: 
         inset 3px 3px 6px var(--neo-dark-shadow),
         inset -3px -3px 6px var(--neo-light-shadow);
     color: var(--primary-color);
 }
 
-/* СТИЛИ СОЦСЕТЕЙ */
 .social-links {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
+/* Социальные кнопки оставляем яркими для узнаваемости, но с мягкой тенью */
 .tg-btn {
     background-color: #2aabee;
     color: white;
@@ -247,8 +228,6 @@ p a {
     background-color: #4a76a8;
     color: white;
 }
-
-/* Убираем неоморфный эффект с цветных кнопок для лучшей читаемости */
 .tg-btn, .vk-btn {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }

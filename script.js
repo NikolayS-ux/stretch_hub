@@ -1,90 +1,82 @@
-// =========================================================
-// ПОЛНЫЙ КОД ДЛЯ LADY STRETCH HUB - script.js
-// УПРАВЛЕНИЕ НАВИГАЦИЕЙ И АУТЕНТИФИКАЦИЕЙ
-// =========================================================
-
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // Элементы навигации
-    const navButtons = document.querySelectorAll('.nav-button, .quick-link-btn, .back-button');
-    const ROOT_SCREEN = 'screen-home';
+    // -------------------------------------------------------------------
+    // 1. НАВИГАЦИЯ МЕЖДУ ЭКРАНАМИ
+    // -------------------------------------------------------------------
 
-    // Элементы для Мотивационного Блока
-    const authButton = document.getElementById('auth-button');
-    const accessCodeInput = document.getElementById('access-code');
-    const authMessage = document.getElementById('auth-message');
-    const authView = document.getElementById('auth-view');
-    const contentView = document.getElementById('detox-content-view');
+    const appContainer = document.getElementById('app-container');
+    const navButtons = document.querySelectorAll('#footer-nav .nav-button');
+    const actionButtons = document.querySelectorAll('.action-button');
     
-    // Временный "пароль" для проверки дизайна.
-    // В будущем заменится на серверную проверку.
-    const MOCK_ACCESS_CODE = 'LADY2025'; 
-
-    // 1. ФУНКЦИЯ ПЕРЕКЛЮЧЕНИЯ ЭКРАНОВ
-    function switchScreen(targetId) {
-        
-        // Скрываем все экраны
-        document.querySelectorAll('.screen').forEach(screen => {
-            screen.classList.remove('active');
+    function switchScreen(targetScreenId) {
+        const screens = document.querySelectorAll('.screen');
+        screens.forEach(screen => {
             screen.classList.add('hidden');
+            screen.classList.remove('active');
         });
-        
-        // Показываем целевой экран
-        const targetScreen = document.getElementById(targetId);
+
+        const targetScreen = document.getElementById(targetScreenId);
         if (targetScreen) {
             targetScreen.classList.remove('hidden');
             targetScreen.classList.add('active');
         }
-
-        // Обновляем активную кнопку в нижнем футере
-        document.querySelectorAll('.nav-button').forEach(btn => {
-            const btnTarget = btn.getAttribute('data-target');
-            if (btnTarget === targetId) {
-                btn.classList.add('active');
-            } else if (btnTarget === ROOT_SCREEN && targetId === ROOT_SCREEN) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
-        });
     }
 
-    // 2. ОБРАБОТЧИК НАВИГАЦИОННЫХ КНОПОК
     navButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const targetId = this.getAttribute('data-target') || this.getAttribute('data-target-screen');
-            if (targetId) {
-                switchScreen(targetId);
-            }
+        button.addEventListener('click', () => {
+            const target = button.getAttribute('data-target');
+            switchScreen(target);
+
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
         });
     });
-    
-    // 3. ЛОГИКА АУТЕНТИФИКАЦИИ (Мотивационный Блок)
+
+    actionButtons.forEach(button => {
+        if (button.hasAttribute('data-target-screen')) {
+            button.addEventListener('click', () => {
+                const target = button.getAttribute('data-target-screen');
+                switchScreen(target);
+
+                if (target === 'screen-home') {
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    document.querySelector('.nav-button[data-target="screen-home"]').classList.add('active');
+                }
+            });
+        }
+    });
+
+    // -------------------------------------------------------------------
+    // 2. ЛОГИКА МОТИВАЦИОННОГО БЛОКА (ВХОД ПО КОДУ)
+    // -------------------------------------------------------------------
+
+    const authButton = document.getElementById('auth-button');
+    const accessCodeInput = document.getElementById('access-code');
+    const authMessage = document.getElementById('auth-message');
+    const authView = document.getElementById('auth-view');
+    const detoxContentView = document.getElementById('detox-content-view');
+
+    // !!! ВАШ СЕКРЕТНЫЙ КОД !!! 
+    // ЭТОТ КОД ДОЛЖЕН СОВПАДАТЬ С КОДОМ, КОТОРЫЙ ВЫ ВЫДАЕТЕ КЛИЕНТАМ ПОСЛЕ ОПЛАТЫ.
+    const SECRET_ACCESS_CODE = 'DETOX2025'; 
+
     if (authButton) {
-        authButton.addEventListener('click', async () => {
-            const code = accessCodeInput.value.trim().toUpperCase();
+        authButton.addEventListener('click', () => {
+            const enteredCode = accessCodeInput.value.trim().toUpperCase(); 
 
-            if (code === MOCK_ACCESS_CODE) {
-                // Успех
-                authMessage.textContent = '✅ Доступ разрешен! Загрузка курса...';
-                authMessage.style.color = 'var(--primary-color)';
-                authButton.disabled = true;
-
+            if (enteredCode === SECRET_ACCESS_CODE) {
+                authMessage.textContent = 'Доступ получен! Загружаем материалы...';
+                authMessage.style.color = 'green';
+                
                 setTimeout(() => {
-                    // Скрываем форму входа и показываем контент
-                    if (authView) authView.classList.add('hidden');
-                    if (contentView) contentView.classList.remove('hidden');
-                }, 1000);
+                    authView.classList.add('hidden');
+                    detoxContentView.classList.remove('hidden');
+                }, 500);
 
             } else {
-                // Ошибка
-                authMessage.textContent = '❌ Неверный код доступа.';
-                authMessage.style.color = 'var(--accent-color)';
-                authButton.disabled = false;
+                authMessage.textContent = 'Неверный код доступа. Попробуйте снова.';
+                authMessage.style.color = 'red';
+                accessCodeInput.value = ''; 
             }
         });
     }
-
-    // 4. ИНИЦИАЛИЗАЦИЯ
-    switchScreen(ROOT_SCREEN);
 });

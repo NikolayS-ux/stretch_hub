@@ -200,18 +200,19 @@ p a {
 /* ****************************************************** */
 
 .center-container {
-    text-align: center;
+    text-align: center; /* Центрируем строчно-блочные элементы внутри */
     margin-top: 10px; 
     margin-bottom: 10px; 
 }
 
-/* Адаптируем большие кнопки для центрирования, ограничивая их ширину */
+/* Адаптируем большие кнопки для центрирования, принудительно делая их inline-block */
 .action-button.large {
     max-width: 350px; 
-    margin-left: auto;
-    margin-right: auto;
-    /* Важно: сохраняем display: block, чтобы max-width и margin auto работали */
-    display: block; 
+    /* Переопределяем display, чтобы родительский text-align: center сработал */
+    display: inline-block; 
+    /* Убираем автоматические внешние отступы, чтобы избежать смещения */
+    margin-left: 10px; 
+    margin-right: 10px; 
 }
 
 /* ****************************************************** */

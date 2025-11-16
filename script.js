@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. НАВИГАЦИЯ МЕЖДУ ЭКРАНАМИ
     // -------------------------------------------------------------------
 
-    const appContainer = document.getElementById('app-container');
     const navButtons = document.querySelectorAll('#footer-nav .nav-button');
     const actionButtons = document.querySelectorAll('.action-button');
     
+    // Функция для переключения экранов
     function switchScreen(targetScreenId) {
         const screens = document.querySelectorAll('.screen');
         screens.forEach(screen => {
@@ -21,22 +21,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Обработка кнопок в футере
     navButtons.forEach(button => {
         button.addEventListener('click', () => {
             const target = button.getAttribute('data-target');
             switchScreen(target);
 
+            // Обновление активного состояния кнопок в футере
             navButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
         });
     });
 
+    // Обработка внутренних кнопок (Быстрые ссылки, Назад)
     actionButtons.forEach(button => {
         if (button.hasAttribute('data-target-screen')) {
             button.addEventListener('click', () => {
                 const target = button.getAttribute('data-target-screen');
                 switchScreen(target);
 
+                // Если вернулись на Главную, активируем кнопку Главная в футере
                 if (target === 'screen-home') {
                     navButtons.forEach(btn => btn.classList.remove('active'));
                     document.querySelector('.nav-button[data-target="screen-home"]').classList.add('active');
@@ -45,38 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // -------------------------------------------------------------------
-    // 2. ЛОГИКА МОТИВАЦИОННОГО БЛОКА (ВХОД ПО КОДУ)
-    // -------------------------------------------------------------------
+    // ЛОГИКА МОТИВАЦИОННОГО БЛОКА УДАЛЕНА, так как он стал ссылкой.
 
-    const authButton = document.getElementById('auth-button');
-    const accessCodeInput = document.getElementById('access-code');
-    const authMessage = document.getElementById('auth-message');
-    const authView = document.getElementById('auth-view');
-    const detoxContentView = document.getElementById('detox-content-view');
-
-    // !!! ВАШ СЕКРЕТНЫЙ КОД !!! 
-    // ЭТОТ КОД ДОЛЖЕН СОВПАДАТЬ С КОДОМ, КОТОРЫЙ ВЫ ВЫДАЕТЕ КЛИЕНТАМ ПОСЛЕ ОПЛАТЫ.
-    const SECRET_ACCESS_CODE = 'DETOX2025'; 
-
-    if (authButton) {
-        authButton.addEventListener('click', () => {
-            const enteredCode = accessCodeInput.value.trim().toUpperCase(); 
-
-            if (enteredCode === SECRET_ACCESS_CODE) {
-                authMessage.textContent = 'Доступ получен! Загружаем материалы...';
-                authMessage.style.color = 'green';
-                
-                setTimeout(() => {
-                    authView.classList.add('hidden');
-                    detoxContentView.classList.remove('hidden');
-                }, 500);
-
-            } else {
-                authMessage.textContent = 'Неверный код доступа. Попробуйте снова.';
-                authMessage.style.color = 'red';
-                accessCodeInput.value = ''; 
-            }
-        });
-    }
 });

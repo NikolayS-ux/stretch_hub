@@ -1,15 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    const SALON_ID = "02977247-3381-4559-b9ef-1cf88d2731a2"; // Ваш единственный ID для виджета 1С
+    const SALON_ID = "02977247-3381-4559-b9ef-1cf88d2731a2"; 
     
     // ==============================================
-    // ОСНОВНАЯ ЛОГИКА ПЕРЕКЛЮЧЕНИЯ ЭКРАНОВ
+    // 1. ОСНОВНАЯ ЛОГИКА ПЕРЕКЛЮЧЕНИЯ ЭКРАНОВ
     // ==============================================
     const screens = document.querySelectorAll('.screen');
     const navButtons = document.querySelectorAll('.nav-button');
     const quickLinks = document.querySelectorAll('.quick-link-btn, .back-button');
 
     function showScreen(screenId) {
+        // Скрываем все экраны
         screens.forEach(screen => {
             screen.classList.add('hidden');
         });
@@ -33,28 +34,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 loadSchedule(SALON_ID);
             }
         }
+        
+        // Прокрутка к началу экрана при переключении
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
+    
+    // Обработчики для кнопок футера
     navButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
+        button.addEventListener('click', () => {
             const screenId = 'screen-' + button.getAttribute('data-target');
             showScreen(screenId);
         });
     });
 
+    // Обработчики для быстрых ссылок и кнопок "Назад"
     quickLinks.forEach(button => {
-        button.addEventListener('click', (e) => {
+        button.addEventListener('click', () => {
             const screenId = button.getAttribute('data-target-screen');
             showScreen(screenId);
         });
     });
     
     // ==============================================
-    // ЛОГИКА ДИНАМИЧЕСКОЙ ЗАГРУЗКИ РАСПИСАНИЯ 1С
+    // 2. ЛОГИКА ДИНАМИЧЕСКОЙ ЗАГРУЗКИ РАСПИСАНИЯ 1С
     // ==============================================
     
     /**
-     * Динамически загружает виджет 1С с заданным ID студии.
+     * Динамически загружает виджет 1С с заданным ID салона.
      * @param {string} salonId Уникальный ID салона (студии).
      */
     function loadSchedule(salonId) {
@@ -80,18 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // 4. Добавляем скрипт в DOM для загрузки виджета
         document.body.appendChild(script);
-
-        // 5. Для лучшего UX прокручиваем экран к началу расписания
-        const scheduleScreen = document.getElementById('screen-schedule');
-        if (scheduleScreen && !scheduleScreen.classList.contains('hidden')) {
-             window.scrollTo({
-                top: scheduleScreen.offsetTop - 80, // Прокрутка ниже шапки
-                behavior: 'smooth'
-            });
-        }
     }
 
-    // Инициализация: убедитесь, что при загрузке страницы активна "Главная"
+    // Инициализация при первой загрузке страницы:
     document.getElementById('screen-home').classList.remove('hidden');
     document.querySelector('.nav-button[data-target="home"]').classList.add('active');
 });

@@ -1,14 +1,18 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', initializeApp);
+
+function initializeApp() {
     
+    // Ваш единственный ID для виджета 1С
     const SALON_ID = "02977247-3381-4559-b9ef-1cf88d2731a2"; 
     
-    // ==============================================
-    // 1. ОСНОВНАЯ ЛОГИКА ПЕРЕКЛЮЧЕНИЯ ЭКРАНОВ
-    // ==============================================
+    // Получение всех необходимых элементов
     const screens = document.querySelectorAll('.screen');
     const navButtons = document.querySelectorAll('.nav-button');
     const quickLinks = document.querySelectorAll('.quick-link-btn, .back-button');
 
+    // ==============================================
+    // 1. ОСНОВНАЯ ЛОГИКА ПЕРЕКЛЮЧЕНИЯ ЭКРАНОВ
+    // ==============================================
     function showScreen(screenId) {
         // Скрываем все экраны
         screens.forEach(screen => {
@@ -39,9 +43,14 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     
-    // Обработчики для кнопок футера
+    // ==============================================
+    // 2. УСТАНОВКА ОБРАБОТЧИКОВ СОБЫТИЙ
+    // ==============================================
+
+    // Обработчики для кнопок футера (Главная, Расписание, Контакты)
     navButtons.forEach(button => {
         button.addEventListener('click', () => {
+            // Получаем ID экрана из data-target (например, "home" -> "screen-home")
             const screenId = 'screen-' + button.getAttribute('data-target');
             showScreen(screenId);
         });
@@ -50,13 +59,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Обработчики для быстрых ссылок и кнопок "Назад"
     quickLinks.forEach(button => {
         button.addEventListener('click', () => {
+            // Получаем ID экрана из data-target-screen (например, "screen-schedule")
             const screenId = button.getAttribute('data-target-screen');
             showScreen(screenId);
         });
     });
     
     // ==============================================
-    // 2. ЛОГИКА ДИНАМИЧЕСКОЙ ЗАГРУЗКИ РАСПИСАНИЯ 1С
+    // 3. ЛОГИКА ДИНАМИЧЕСКОЙ ЗАГРУЗКИ РАСПИСАНИЯ 1С
     // ==============================================
     
     /**
@@ -88,7 +98,19 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(script);
     }
 
-    // Инициализация при первой загрузке страницы:
-    document.getElementById('screen-home').classList.remove('hidden');
-    document.querySelector('.nav-button[data-target="home"]').classList.add('active');
-});
+    // ==============================================
+    // 4. ИНИЦИАЛИЗАЦИЯ ПРИ ЗАГРУЗКЕ СТРАНИЦЫ
+    // ==============================================
+    
+    // Убедитесь, что активна "Главная"
+    const homeScreen = document.getElementById('screen-home');
+    if (homeScreen) {
+        homeScreen.classList.remove('hidden');
+    }
+    
+    // Делаем кнопку "Главная" активной в футере
+    const homeNavButton = document.querySelector('.nav-button[data-target="home"]');
+    if (homeNavButton) {
+        homeNavButton.classList.add('active');
+    }
+}

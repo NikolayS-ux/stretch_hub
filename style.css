@@ -81,10 +81,12 @@ p a {
     object-fit: contain; /* Сохраняет пропорции, предотвращая "квадратность" */
 }
 
-/* БАННЕР */
+/* БАННЕР - ИСПРАВЛЕНО ДЛЯ АДАПТИВНОСТИ */
 #main-banner-container {
     width: 100%; 
-    height: 180px; 
+    height: auto; 
+    aspect-ratio: 16 / 9; /* Соотношение сторон 16:9 для адаптации */
+    max-height: 200px; /* Ограничение высоты для десктопа/планшета */
     margin-bottom: 20px;
     border-radius: var(--border-radius);
     overflow: hidden;
@@ -206,11 +208,10 @@ p a {
     margin-bottom: 10px; 
 }
 
-/* На мобильных устройствах большие кнопки просто занимают всю ширину контейнера, чтобы избежать смещений */
 .action-button.large {
-    max-width: 100%; /* Устанавливаем 100% ширины на мобильных */
-    display: block; /* Снова делаем их блочными */
-    margin: 10px 0; /* Убираем горизонтальные margin, чтобы избежать горизонтальной прокрутки */
+    max-width: 100%; 
+    display: block; 
+    margin: 10px 0; 
 }
 
 /* ****************************************************** */
@@ -270,15 +271,13 @@ p a {
 
 .social-links-grid {
     display: grid;
-    /* Создаем 2 колонки одинаковой ширины */
     grid-template-columns: 1fr 1fr; 
     gap: 8px; 
     margin-bottom: 20px;
 }
 
-/* Стиль для кнопки, которая должна занимать всю ширину в сетке 2xN */
 .full-width-grid {
-    grid-column: 1 / span 2; /* Занимает обе колонки */
+    grid-column: 1 / span 2; 
 }
 
 .social-button {
@@ -289,7 +288,7 @@ p a {
     white-space: normal; 
 }
 
-/* ЦВЕТА СОЦСЕТЕЙ (Остаются без изменений) */
+/* ЦВЕТА СОЦСЕТЕЙ */
 .tg-btn { background-color: #2aabee; color: white; }
 .vk-btn { background-color: #4a76a8; color: white; }
 .site-btn { background-color: var(--neo-bg-color); color: var(--primary-color); border: 1px solid var(--primary-color); }
@@ -298,7 +297,7 @@ p a {
 .dzen-btn { background-color: #000000; color: white; }
 .wa-btn { background-color: #25D366; color: white; }
 
-/* НОВЫЕ ЦВЕТА ДЛЯ ПРИЛОЖЕНИЙ (Остаются без изменений) */
+/* ЦВЕТА ДЛЯ ПРИЛОЖЕНИЙ */
 .app-store-btn { background-color: #007aff; color: white; }
 .ru-store-btn { background-color: #2d2d2d; color: white; }
 .app-gallery-btn { background-color: #e20023; color: white; }
@@ -309,25 +308,21 @@ p a {
 /* ****************************************************** */
 @media (min-width: 768px) {
     
-    /* 1. Увеличиваем максимальную ширину контейнера до 800px */
     #app-container {
-        max-width: 800px; /* Расширяем рабочую область! */
+        max-width: 800px; 
     }
 
-    /* 2. Увеличиваем ширину шапки и убираем фиксирование */
     #main-header {
         max-width: 800px;
         position: static; 
         margin-top: 30px; 
     }
     
-    /* 3. Корректируем отступы для всего BODY */
     body {
         padding-top: 0; 
         padding-bottom: 30px; 
     }
 
-    /* 4. Фиксируем футер только на мобильных, на десктопе делаем его статическим */
     #footer-nav {
         position: static;
         max-width: 800px;
@@ -340,14 +335,12 @@ p a {
         padding: 15px 10px; 
     }
 
-    /* 5. На десктопе возвращаем центрирование для больших кнопок */
     .action-button.large {
-        max-width: 450px; /* Делаем их чуть шире, чем на мобильных, но не на всю ширину 800px */
-        display: inline-block; /* Центрируем */
-        margin: 10px; /* Возвращаем стандартный отступ */
+        max-width: 450px; 
+        display: inline-block; 
+        margin: 10px; 
     }
     
-    /* 6. Увеличиваем максимальную ширину контейнера для больших экранов */
     .screen {
         max-width: 800px;
     }

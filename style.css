@@ -83,7 +83,7 @@ p a {
 
 /* БАННЕР */
 #main-banner-container {
-    width: 100%; /* ГАРАНТИРУЕТ 100% ШИРИНЫ КОНТЕЙНЕРА */
+    width: 100%; 
     height: 180px; 
     margin-bottom: 20px;
     border-radius: var(--border-radius);
@@ -94,9 +94,9 @@ p a {
 }
 
 #main-banner-image {
-    width: 100%; /* Изображение занимает 100% ширины контейнера */
-    height: 100%; /* Изображение занимает 100% высоты контейнера */
-    object-fit: cover; /* Обрезает изображение, чтобы оно поместилось, устраняя "огромность" */
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
     display: block;
 }
 
@@ -164,6 +164,7 @@ p a {
         5px 5px 10px var(--neo-dark-shadow),
         -5px -5px 10px var(--neo-light-shadow);
     transition: all 0.2s ease-in-out;
+    box-sizing: border-box; /* Важно для избежания смещений */
 }
 
 /* ВДАВЛЕННЫЙ ЭФФЕКТ (При нажатии) */
@@ -196,22 +197,20 @@ p a {
 }
 
 /* ****************************************************** */
-/* СТИЛИ ДЛЯ ЦЕНТРИРОВАНИЯ БОЛЬШИХ КНОПОК ОПЛАТЫ */
+/* СТИЛИ ДЛЯ БОЛЬШИХ КНОПОК ОПЛАТЫ (mobile-first) */
 /* ****************************************************** */
 
 .center-container {
-    text-align: center; /* Центрируем строчно-блочные элементы внутри */
+    text-align: center; 
     margin-top: 10px; 
     margin-bottom: 10px; 
 }
 
-/* Адаптируем большие кнопки для центрирования, принудительно делая их inline-block */
+/* На мобильных устройствах большие кнопки просто занимают всю ширину контейнера, чтобы избежать смещений */
 .action-button.large {
-    max-width: 350px; 
-    /* Переопределяем display, чтобы родительский text-align: center сработал */
-    display: inline-block; 
-    /* Убираем автоматические внешние отступы, чтобы избежать смещения */
-    margin: 10px; /* Возвращаем стандартный отступ */
+    max-width: 100%; /* Устанавливаем 100% ширины на мобильных */
+    display: block; /* Снова делаем их блочными */
+    margin: 10px 0; /* Убираем горизонтальные margin, чтобы избежать горизонтальной прокрутки */
 }
 
 /* ****************************************************** */
@@ -273,7 +272,7 @@ p a {
     display: grid;
     /* Создаем 2 колонки одинаковой ширины */
     grid-template-columns: 1fr 1fr; 
-    gap: 8px; /* НЕМНОГО УМЕНЬШИЛИ ОТСТУП */
+    gap: 8px; 
     margin-bottom: 20px;
 }
 
@@ -283,100 +282,73 @@ p a {
 }
 
 .social-button {
-    /* Переопределяем ширину, чтобы она вписывалась в сетку */
     width: auto; 
-    padding: 8px 3px; /* СДЕЛАЛИ КНОПКИ БОЛЕЕ КОМПАКТНЫМИ */
+    padding: 8px 3px; 
     margin: 0; 
-    font-size: 0.85em; /* НЕМНОГО УМЕНЬШИЛИ ШРИФТ */
-    white-space: normal; /* Разрешаем перенос текста, если он не помещается */
+    font-size: 0.85em; 
+    white-space: normal; 
 }
 
-/* ЦВЕТА СОЦСЕТЕЙ */
-.tg-btn {
-    background-color: #2aabee;
-    color: white;
-}
-.vk-btn {
-    background-color: #4a76a8;
-    color: white;
-}
-.site-btn {
-    background-color: var(--neo-bg-color); 
-    color: var(--primary-color);
-    border: 1px solid var(--primary-color);
-}
-.yt-btn {
-    background-color: #ff0000;
-    color: white;
-}
-.ru-btn {
-    background-color: #ff8000; 
-    color: white;
-}
-.dzen-btn {
-    background-color: #000000;
-    color: white;
-}
-.wa-btn {
-    background-color: #25D366; 
-    color: white;
-}
+/* ЦВЕТА СОЦСЕТЕЙ (Остаются без изменений) */
+.tg-btn { background-color: #2aabee; color: white; }
+.vk-btn { background-color: #4a76a8; color: white; }
+.site-btn { background-color: var(--neo-bg-color); color: var(--primary-color); border: 1px solid var(--primary-color); }
+.yt-btn { background-color: #ff0000; color: white; }
+.ru-btn { background-color: #ff8000; color: white; }
+.dzen-btn { background-color: #000000; color: white; }
+.wa-btn { background-color: #25D366; color: white; }
 
-/* НОВЫЕ ЦВЕТА ДЛЯ ПРИЛОЖЕНИЙ */
-.app-store-btn {
-    background-color: #007aff; /* Синий Apple */
-    color: white;
-}
-.ru-store-btn {
-    background-color: #2d2d2d; /* Темный RuStore */
-    color: white;
-}
-.app-gallery-btn {
-    background-color: #e20023; /* Красный Huawei */
-    color: white;
-}
+/* НОВЫЕ ЦВЕТА ДЛЯ ПРИЛОЖЕНИЙ (Остаются без изменений) */
+.app-store-btn { background-color: #007aff; color: white; }
+.ru-store-btn { background-color: #2d2d2d; color: white; }
+.app-gallery-btn { background-color: #e20023; color: white; }
 
-/* Общие тени */
-.social-button {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-}
-.social-button:active {
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
-}
 
 /* ****************************************************** */
 /* АДАПТАЦИЯ ДЛЯ ДЕКСТОПА (Ширина экрана 768px и более) */
 /* ****************************************************** */
 @media (min-width: 768px) {
     
-    /* 1. Увеличиваем максимальную ширину контейнера */
+    /* 1. Увеличиваем максимальную ширину контейнера до 800px */
     #app-container {
-        max-width: 650px; 
+        max-width: 800px; /* Расширяем рабочую область! */
     }
 
     /* 2. Увеличиваем ширину шапки и убираем фиксирование */
     #main-header {
-        max-width: 650px;
-        position: static; /* Делаем шапку прокручиваемой */
-        margin-top: 30px; /* Добавляем отступ сверху */
+        max-width: 800px;
+        position: static; 
+        margin-top: 30px; 
     }
-
+    
     /* 3. Корректируем отступы для всего BODY */
     body {
-        padding-top: 0; /* Убираем фиксированный отступ, т.к. шапка не фиксирована */
-        padding-bottom: 30px; /* Увеличиваем нижний отступ */
+        padding-top: 0; 
+        padding-bottom: 30px; 
     }
 
     /* 4. Фиксируем футер только на мобильных, на десктопе делаем его статическим */
     #footer-nav {
         position: static;
-        max-width: 650px;
-        box-shadow: none; /* Убираем тень */
-        border-top: none; /* Убираем границу */
+        max-width: 800px;
+        box-shadow: none; 
+        border-top: none; 
         margin-top: 20px;
     }
     
     .nav-button {
-        padding: 15px 10px; /* Делаем кнопки футера крупнее */
+        padding: 15px 10px; 
+    }
+
+    /* 5. На десктопе возвращаем центрирование для больших кнопок */
+    .action-button.large {
+        max-width: 450px; /* Делаем их чуть шире, чем на мобильных, но не на всю ширину 800px */
+        display: inline-block; /* Центрируем */
+        margin: 10px; /* Возвращаем стандартный отступ */
+    }
+    
+    /* 6. Увеличиваем максимальную ширину контейнера для больших экранов */
+    .screen {
+        max-width: 800px;
     }
 }

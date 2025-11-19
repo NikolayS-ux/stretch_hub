@@ -1,6 +1,5 @@
 /* =========================================================
 // ПОЛНЫЙ КОД ДЛЯ LADY STRETCH HUB - style.css (ФИНАЛЬНЫЙ)
-// НЕОМОРФИЗМ С МЯГКИМИ ФИРМЕННЫМИ ЦВЕТАМИ (Лаванда)
 // ========================================================= */
 
 :root {
@@ -34,7 +33,7 @@ body {
 
 #app-container {
     width: 100%;
-    max-width: 450px; /* Максимальная ширина для мобильных устройств */
+    max-width: 450px; 
     padding: 0 20px;
     box-sizing: border-box;
 }
@@ -76,31 +75,99 @@ p a {
 /* АДАПТАЦИЯ ЛОГОТИПА */
 #main-header img {
     max-width: 100%;
-    height: 50px; /* Фиксированная высота */
+    height: 50px; 
     width: auto;
-    object-fit: contain; /* Сохраняет пропорции, предотвращая "квадратность" */
+    object-fit: contain;
 }
 
-/* БАННЕР - ИСПРАВЛЕНО ДЛЯ АДАПТИВНОСТИ */
+/* =========================================================
+// СТИЛИ АДАПТИВНОГО БАННЕРА (Новая логика)
+// ========================================================= */
 #main-banner-container {
     width: 100%; 
     height: auto; 
-    aspect-ratio: 16 / 9; /* Соотношение сторон 16:9 для адаптации */
-    max-height: 200px; /* Ограничение высоты для десктопа/планшета */
     margin-bottom: 20px;
     border-radius: var(--border-radius);
     overflow: hidden;
     box-shadow: 
         var(--neomorphic-intensity) var(--neomorphic-intensity) calc(var(--neomorphic-intensity) * 2) var(--neo-dark-shadow),
         calc(var(--neomorphic-intensity) * -1) calc(var(--neomorphic-intensity) * -1) calc(var(--neomorphic-intensity) * 2) var(--neo-light-shadow);
+    display: flex; 
+    justify-content: center;
+    align-items: center;
 }
 
-#main-banner-image {
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
+/* Скрываем все баннеры по умолчанию и показываем только активный */
+#main-banner-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none; 
+}
+
+/* Показываем активный баннер */
+#main-banner-container img.active-banner {
     display: block;
 }
+
+/* Стили для МОБИЛЬНОГО баннера (По умолчанию) */
+#main-banner-image-mobile {
+    aspect-ratio: 3 / 4; /* Вертикальное соотношение для мобильных */
+    max-height: 400px;
+}
+
+/* Скрываем десктопный баннер на мобильных */
+#main-banner-image-desktop.hidden-banner {
+    display: none !important; 
+}
+
+/* =========================================================
+// СТИЛИ ЭМОЦИОНАЛЬНЫХ ПРОДАЮЩИХ БЛОКОВ (Новый блок)
+// ========================================================= */
+.sales-pitch {
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: var(--neo-light-shadow); 
+    border-radius: 15px;
+    /* Эффект легкого вдавливания для выделения */
+    box-shadow: inset 2px 2px 5px var(--neo-dark-shadow); 
+}
+
+.sales-pitch p {
+    margin: 5px 0;
+    color: var(--text-color);
+    font-size: 0.95em;
+}
+
+.section-heading {
+    text-align: center;
+    color: var(--primary-color);
+    margin: 30px 0 15px 0;
+    font-size: 1.3em;
+}
+
+#benefits-list {
+    display: grid;
+    /* Сетка 2 колонки */
+    grid-template-columns: 1fr 1fr; 
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.benefit-item {
+    background-color: var(--accent-color); /* Яркий акцентный цвет */
+    color: white;
+    padding: 10px 5px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 0.8em;
+    font-weight: bold;
+    /* Мягкая внешняя тень */
+    box-shadow: 3px 3px 5px var(--neo-dark-shadow); 
+}
+
 
 /* ЭКРАНЫ */
 .screen {
@@ -118,31 +185,6 @@ p a {
 
 .hidden {
     display: none !important;
-}
-
-/* ПОЛЯ ВВОДА */
-.neo-input {
-    width: 100%;
-    padding: 15px;
-    margin: 15px 0;
-    border: none;
-    border-radius: 12px;
-    font-size: 1em;
-    color: var(--text-color);
-    background-color: var(--neo-bg-color);
-    box-sizing: border-box;
-    box-shadow: 
-        inset 5px 5px 10px var(--neo-dark-shadow),
-        inset -5px -5px 10px var(--neo-light-shadow);
-    transition: all 0.2s ease-in-out;
-}
-
-.neo-input:focus {
-    outline: none;
-    box-shadow: 
-        inset 2px 2px 5px var(--neo-dark-shadow),
-        inset -2px -2px 5px var(--neo-light-shadow),
-        0 0 0 2px var(--accent-color); 
 }
 
 /* КНОПКИ (Выдавленный) */
@@ -166,7 +208,7 @@ p a {
         5px 5px 10px var(--neo-dark-shadow),
         -5px -5px 10px var(--neo-light-shadow);
     transition: all 0.2s ease-in-out;
-    box-sizing: border-box; /* Важно для избежания смещений */
+    box-sizing: border-box; 
 }
 
 /* ВДАВЛЕННЫЙ ЭФФЕКТ (При нажатии) */
@@ -199,7 +241,7 @@ p a {
 }
 
 /* ****************************************************** */
-/* СТИЛИ ДЛЯ БОЛЬШИХ КНОПОК ОПЛАТЫ (mobile-first) */
+/* СТИЛИ ДЛЯ БОЛЬШИХ КНОПОК ОПЛАТЫ */
 /* ****************************************************** */
 
 .center-container {
@@ -266,7 +308,7 @@ p a {
 }
 
 /* =========================================================
-// СТИЛИ СОЦСЕТЕЙ (Адаптация в сетку 2x3) - ФИНАЛЬНЫЕ
+// СТИЛИ СОЦСЕТЕЙ (Адаптация в сетку 2x3) 
 // ========================================================= */
 
 .social-links-grid {
@@ -343,5 +385,16 @@ p a {
     
     .screen {
         max-width: 800px;
+    }
+    
+    /* Стили для ДЕСКТОПНОГО БАННЕРА на широком экране */
+    #main-banner-image-mobile.active-banner {
+        display: none; /* Скрываем мобильный баннер */
+    }
+    
+    #main-banner-image-desktop {
+        display: block !important; /* Показываем десктопный баннер */
+        aspect-ratio: 16 / 9; /* Горизонтальное соотношение для десктопа */
+        max-height: 400px; 
     }
 }

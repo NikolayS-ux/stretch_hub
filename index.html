@@ -27,6 +27,7 @@
     <main id="app-container">
         
         <section id="screen-home" class="screen active">
+            
             <div id="main-banner-container">
                 <img src="banner-mobile.png" alt="Lady Stretch Акция" id="main-banner-image-mobile" class="active-banner">
                 <img src="banner-desktop.png" alt="Lady Stretch Акция" id="main-banner-image-desktop" class="hidden-banner">
@@ -38,9 +39,9 @@
             </div>
             
             <div id="quick-links">
-                <button class="quick-link-btn action-button primary-btn pulsing-btn" data-target-screen="screen-payment">💸 Купить Абонемент (Начните свой путь!)</button>
-                <button class="quick-link-btn action-button" data-target-screen="screen-schedule">📅 Посмотреть расписание и записаться</button>
-                <button class="quick-link-btn action-button" data-target-screen="screen-motivation">💡 Доступ к Онлайн-Курсам</button>
+                <button class="quick-link-btn action-button primary-btn pulsing-btn" data-target-screen="screen-payment">Купить абонемент</button>
+                <button class="quick-link-btn action-button" data-target-screen="screen-schedule">Расписание</button>
+                <button class="quick-link-btn action-button" data-target-screen="screen-motivation">Онлайн тренировки</button>
             </div>
             
             <h3 style="text-align: center; margin-top: 30px; color: var(--text-color); font-size: 1.2em;">Скачайте наше приложение:</h3>
@@ -66,18 +67,19 @@
         </section>
 
         <section id="screen-payment" class="screen hidden">
-            <h2>Оплата Абонементов и Онлайн-Курсов</h2>
             <h3>Покупка абонементов студии</h3>
             <p style="text-align: center;">Выберите удобный способ оплаты и тариф для занятий в студии:</p>
             <div class="payment-options center-container">
                 <a href="https://checkout.tochka.com/c4d58065-16a3-4f41-ad8d-744657f1f69b" target="_blank" class="action-button large primary-btn">💳 Оплатить абонемент онлайн</a>
             </div>
             <p style="text-align: center; margin-top: 15px;">Если возникли вопросы с оплатой, напишите нам в <a href="https://t.me/ladystretchsykt" target="_blank">Telegram</a>.</p>
-            <h3>Онлайн-курсы (Детокс, Стройность)</h3>
+            
+            <h3>Доступ к закрытым онлайн тренировкам и курсам</h3>
             <p style="text-align: center;">Доступ к закрытым курсам через нашего бота:</p>
             <div class="payment-options center-container">
                 <a href="https://t.me/fitness11_online_bot" target="_blank" class="action-button large tg-btn">🤖 Онлайн тренировки и курсы по питанию</a>
             </div>
+            
             <button class="back-button action-button" data-target-screen="screen-home">← Назад</button>
         </section>
 

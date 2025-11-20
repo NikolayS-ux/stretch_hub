@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Lady Stretch Сыктывкар — Студия Растяжки и Фитнеса | Расписание, Цены, Онлайн-Курсы</title>
-    <meta name="description" content="Официальный хаб Lady Stretch в Сыктывкаре. Узнайте расписание, цены на абонементы, оплатите занятия онлайн и получите доступ к курсам Детокс и Стройность.">
-    <meta name="keywords" content="Lady Stretch Сыктывкар, студия растяжки Сыктывкар, фитнес Сыктывкар, расписание занятий, цены абонементов, оплата онлайн, курс Детокс, курс Стройность, Lady Stretch хаб">
+    <title>Lady Stretch Сыктывкар — Студия Растяжки и Фитнеса | Достигни совершенного состояния</title>
+    <meta name="description" content="Lady Stretch Сыктывкар: откройте в себе грацию, легкость и любовь к себе. Узнайте расписание, цены на абонементы и начните свой путь к совершенному состоянию.">
+    <meta name="keywords" content="Lady Stretch Сыктывкар, студия растяжки Сыктывкар, фитнес Сыктывкар, грация, женственность, легкость, абонемент, онлайн-курсы">
     
-    <meta property="og:title" content="Lady Stretch Сыктывкар — Расписание, Цены, Курсы">
-    <meta property="og:description" content="Официальный хаб Lady Stretch: Расписание, оплата абонементов и доступ к онлайн-курсам Детокс и Стройность.">
-    <meta property="og:image" content="https://ВАШ-ДОМЕН/banner.png"> 
+    <meta property="og:title" content="Lady Stretch Сыктывкар — Ваша новая грация и легкость">
+    <meta property="og:description" content="Откройте совершенное состояние: грация, свобода и любовь к себе в студии Lady Stretch.">
+    <meta property="og:image" content="https://ВАШ-ДОМЕН/banner-desktop.png"> 
     <meta property="og:url" content="https://ВАШ-ДОМЕН">
     <meta property="og:type" content="website">
 
@@ -26,18 +26,29 @@
     <main id="app-container">
         
         <section id="screen-home" class="screen active">
-            <h2>Добро пожаловать в хаб Lady Stretch!</h2>
+            <h2>🔥 Откройте в себе гибкую богиню!</h2>
             
             <div id="main-banner-container">
-                <img src="banner.png" alt="Акция Lady Stretch" id="main-banner-image">
+                <img src="banner-mobile.png" alt="Lady Stretch Акция" id="main-banner-image-mobile" class="active-banner">
+                <img src="banner-desktop.png" alt="Lady Stretch Акция" id="main-banner-image-desktop" class="hidden-banner">
             </div>
-
-            <p style="text-align: center;">Экосистема Lady Stretch, ваш центр здоровья, энергии и позитива</p>
             
+            <div class="sales-pitch">
+                <p><strong>Lady Stretch Сыктывкар — это пространство, где вы влюбляетесь в себя заново.</strong></p>
+                <p>Мы предлагаем вам не просто шпагат, а **совершенное состояние:** легкое тело, сияющую энергию и гармонию с собой. Вы этого достойны! ✨</p>
+            </div>
+            
+            <h3 class="section-heading">💖 Наши тренировки дарят вам:</h3>
+            <div id="benefits-list">
+                <div class="benefit-item">✅ Грациозность и Легкость</div>
+                <div class="benefit-item">✅ Внутреннюю Свободу</div>
+                <div class="benefit-item">✅ Любовь и Уверенность к себе</div>
+                <div class="benefit-item">✅ Снятие Стресса и Зажимов</div>
+            </div>
             <div id="quick-links">
-                <button class="quick-link-btn action-button" data-target-screen="screen-schedule">📅 Расписание и запись</button>
-                <button class="quick-link-btn action-button primary-btn" data-target-screen="screen-payment">💰 Оплата Абонементов</button>
-                <button class="quick-link-btn action-button" data-target-screen="screen-motivation">💡 Мотивационный Блок (Курсы)</button>
+                <button class="quick-link-btn action-button primary-btn" data-target-screen="screen-payment">💸 Купить Абонемент (Начните свой путь!)</button>
+                <button class="quick-link-btn action-button" data-target-screen="screen-schedule">📅 Посмотреть расписание и записаться</button>
+                <button class="quick-link-btn action-button" data-target-screen="screen-motivation">💡 Доступ к Онлайн-Курсам</button>
             </div>
             
             <h3 style="text-align: center; margin-top: 30px; color: var(--text-color); font-size: 1.2em;">Скачайте наше приложение:</h3>
@@ -54,73 +65,52 @@
 
         <section id="screen-schedule" class="screen hidden">
             <h2>Онлайн Расписание и Запись</h2>
-            
             <div id="schedule-container">
                 <div data-fit1c-calendar>
                     Расписание загружается...
                 </div>
             </div>
-
             <button class="back-button action-button" data-target-screen="screen-home">← Назад</button>
         </section>
 
         <section id="screen-payment" class="screen hidden">
             <h2>Оплата Абонементов и Онлайн-Курсов</h2>
-            
             <h3>Покупка абонементов студии</h3>
             <p style="text-align: center;">Выберите удобный способ оплаты и тариф для занятий в студии:</p>
-            
             <div class="payment-options center-container">
                 <a href="https://checkout.tochka.com/c4d58065-16a3-4f41-ad8d-744657f1f69b" target="_blank" class="action-button large primary-btn">💳 Оплатить абонемент онлайн</a>
             </div>
-            
             <p style="text-align: center; margin-top: 15px;">Если возникли вопросы с оплатой, напишите нам в <a href="https://t.me/ladystretchsykt" target="_blank">Telegram</a>.</p>
-            
-
-            <h3 style="margin-top: 30px;">Онлайн-курсы (Детокс, Стройность)</h3>
+            <h3>Онлайн-курсы (Детокс, Стройность)</h3>
             <p style="text-align: center;">Доступ к закрытым курсам через нашего бота:</p>
-            
             <div class="payment-options center-container">
                 <a href="https://t.me/fitness11_online_bot" target="_blank" class="action-button large tg-btn">🤖 Онлайн тренировки и курсы по питанию</a>
             </div>
-
             <button class="back-button action-button" data-target-screen="screen-home">← Назад</button>
         </section>
 
         <section id="screen-motivation" class="screen hidden">
             <h2>Доступ к оплаченным курсам</h2>
-            
             <p style="text-align: center;">Для доступа к вашим курсам (Детокс, Стройность и др.), нажмите кнопку ниже. Бот проверит вашу подписку и выдаст ссылку на закрытый канал.</p>
-
             <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
                 <a href="https://t.me/fitness11_online_bot" target="_blank" class="action-button large primary-btn">
                     🔑 Платный доступ к курсам
                 </a>
             </div>
-
             <button class="back-button action-button" data-target-screen="screen-home">← Назад</button>
         </section>
 
         <section id="screen-contacts" class="screen hidden">
             <h2>Контакты и Социальные сети</h2>
             <div class="social-links-grid"> 
-                
                 <a href="https://t.me/ladystretch11" target="_blank" class="social-button action-button tg-btn">💬 Telegram</a>
-                
                 <a href="https://vk.com/ls_syktyvkar" target="_blank" class="social-button action-button vk-btn">VK</a>
-
                 <a href="https://ladystretch.com/syktyvkar" target="_blank" class="social-button action-button site-btn">🌐 Сайт</a>
-                
                 <a href="https://www.youtube.com/@ladystretch-syk" target="_blank" class="social-button action-button yt-btn">📺 YouTube</a>
-                
                 <a href="https://rutube.ru/channel/59408700/" target="_blank" class="social-button action-button ru-btn">🇷🇺 RuTube</a>
-                
                 <a href="https://dzen.ru/lady_stretch_sykt" target="_blank" class="social-button action-button dzen-btn">✍️ Дзен</a>
-
                 <a href="https://wa.me/79087155557?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82!%20%F0%9F%91%8B%20%D0%9C%D0%B5%D0%BD%D1%8F%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82..." target="_blank" class="social-button action-button wa-btn full-width-grid">🟢 WhatsApp</a>
-                
             </div>
-            
             <button class="back-button action-button" data-target-screen="screen-home">← Назад</button>
         </section>
 

@@ -1,6 +1,6 @@
 /* =========================================================
 // ПОЛНЫЙ КОД ДЛЯ LADY STRETCH HUB - style.css (ФИНАЛЬНЫЙ)
-// Включает: адаптивность, новую шапку, мерцающую кнопку
+// Включает: адаптивность, новую шапку, мерцающую кнопку, прозрачные цвета
 // ========================================================= */
 
 :root {
@@ -9,10 +9,12 @@
     --neo-light-shadow: #ffffff; 
     --neo-dark-shadow: #a3b1c6; 
     
-    /* Фирменные цвета Lady Stretch (Мягкие акценты) */
-    --primary-color: #7b1fa2; /* Темный фиолетовый */
+    /* Фирменные цвета Lady Stretch (Мягкие и прозрачные акценты) */
+    /* Исходный #7b1fa2 */
+    --primary-color: rgba(123, 31, 162, 0.9); /* Темный фиолетовый с прозрачностью 0.9 */
     --accent-color: #CC99FF; /* МЯГКАЯ ЛАВАНДА */
-    --pulsing-color: #5d0f7f; /* Темно-фиолетовый для мерцающей кнопки */
+    /* Исходный #5d0f7f */
+    --pulsing-color: rgba(93, 15, 127, 0.9); /* Темно-фиолетовый для мерцающей кнопки с прозрачностью 0.9 */
     --text-color: #333; /* Темный текст */
 
     --border-radius: 20px;
@@ -29,13 +31,13 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    padding-top: 85px; /* Отступ для фиксированной шапки */
-    padding-bottom: 70px; /* Отступ для фиксированного футера */
+    padding-top: 85px; 
+    padding-bottom: 70px; 
 }
 
 #app-container {
     width: 100%;
-    max-width: 450px; /* Максимальная ширина для мобильных устройств */
+    max-width: 450px; 
     padding: 0 20px;
     box-sizing: border-box;
 }
@@ -56,7 +58,7 @@ p a {
 }
 
 /* =========================================================
-// 1. СТИЛИ ШАПКИ (Лого + Заголовок)
+// 1. СТИЛИ ШАПКИ
 // ========================================================= */
 #main-header {
     width: 100%;
@@ -81,14 +83,14 @@ p a {
     height: 50px; 
     width: 50px;
     object-fit: cover;
-    border-radius: 50%; /* Округление логотипа */
+    border-radius: 50%; 
     box-shadow: 
         inset 2px 2px 5px var(--neo-dark-shadow),
         inset -2px -2px 5px var(--neo-light-shadow);
 }
 
 #header-title {
-    font-family: 'Brush Script MT', cursive, sans-serif; /* Имитация письма пером */
+    font-family: 'Brush Script MT', cursive, sans-serif; 
     color: var(--primary-color);
     font-size: 1.4em;
     font-weight: bold;
@@ -96,8 +98,6 @@ p a {
     flex-grow: 1; 
     margin: 0 10px;
 }
-/* ========================================================= */
-
 
 /* =========================================================
 // 2. СТИЛИ АДАПТИВНОГО БАННЕРА
@@ -129,7 +129,7 @@ p a {
 }
 
 #main-banner-image-mobile {
-    aspect-ratio: 3 / 4; /* Вертикальное соотношение для мобильных */
+    aspect-ratio: 3 / 4; 
     max-height: 55vh; 
 }
 
@@ -162,7 +162,6 @@ p a {
                     0 0 20px var(--accent-color);
     }
 }
-/* ========================================================= */
 
 /* СТИЛИ ПРОДАЮЩИХ БЛОКОВ */
 .sales-pitch {
@@ -283,7 +282,7 @@ p a {
     color: var(--primary-color);
 }
 
-/* СТИЛИ СОЦСЕТЕЙ */
+/* СТИЛИ СОЦСЕТЕЙ (Без изменений) */
 .social-links-grid {
     display: grid;
     grid-template-columns: 1fr 1fr; 
@@ -303,20 +302,32 @@ p a {
     white-space: normal; 
 }
 
+.tg-btn { background-color: #2aabee; color: white; }
+.vk-btn { background-color: #4a76a8; color: white; }
+.site-btn { background-color: var(--neo-bg-color); color: var(--primary-color); border: 1px solid var(--primary-color); }
+.yt-btn { background-color: #ff0000; color: white; }
+.ru-btn { background-color: #ff8000; color: white; }
+.dzen-btn { background-color: #000000; color: white; }
+.wa-btn { background-color: #25D366; color: white; }
+.app-store-btn { background-color: #007aff; color: white; }
+.ru-store-btn { background-color: #2d2d2d; color: white; }
+.app-gallery-btn { background-color: #e20023; color: white; }
+
+
 /* ****************************************************** */
 /* АДАПТАЦИЯ ДЛЯ ДЕКСТОПА (Ширина экрана 768px и более) */
 /* ****************************************************** */
 @media (min-width: 768px) {
     
     #app-container {
-        max-width: 900px; /* Увеличиваем ширину для ПК */
+        max-width: 900px; 
     }
 
     #main-header {
-        max-width: 900px; /* Увеличиваем ширину шапки */
+        max-width: 900px; 
         position: static; 
         margin-top: 30px; 
-        padding: 15px 40px; /* Увеличиваем отступы */
+        padding: 15px 40px; 
         height: 80px;
     }
     
@@ -327,26 +338,24 @@ p a {
 
     #footer-nav {
         position: static;
-        max-width: 900px; /* Увеличиваем ширину футера */
+        max-width: 900px; 
         box-shadow: none; 
         border-top: none; 
         margin-top: 20px;
     }
     
-    /* Стили для ДЕСКТОПНОГО БАННЕРА на широком экране */
     #main-banner-image-mobile.active-banner {
         display: none; 
     }
     
     #main-banner-image-desktop {
         display: block !important; 
-        aspect-ratio: 16 / 9; /* Горизонтальное соотношение */
+        aspect-ratio: 16 / 9; 
         max-height: 500px; 
     }
     
-    /* Стили для Шапки на десктопе */
     #header-title {
-        font-size: 1.8em; /* Увеличиваем размер текста */
+        font-size: 1.8em; 
     }
     
     #header-logo {

@@ -1,7 +1,15 @@
+/**
+ * Lady Stretch Сыктывкар - Основной скрипт приложения
+ * Версия: 2.1 (С исправленной логикой загрузки расписания)
+ */
+
 document.addEventListener('DOMContentLoaded', () => {
     
-    // ВАШ УНИКАЛЬНЫЙ ID
+    // ==============================================
+    // КОНСТАНТЫ И НАСТРОЙКИ
+    // ==============================================
     const SALON_ID = "02977247-3381-4559-b9ef-1cf88d2731a2"; 
+    const LOADING_TIMEOUT = 10000; // 10 секунд для загрузки расписания
     
     // ==============================================
     // 1. ПОЛУЧЕНИЕ ЭЛЕМЕНТОВ
@@ -9,93 +17,145 @@ document.addEventListener('DOMContentLoaded', () => {
     const screens = document.querySelectorAll('.screen');
     const navButtons = document.querySelectorAll('.nav-button');
     const quickLinks = document.querySelectorAll('.quick-link-btn, .back-button');
-
+    const errorMessage = document.getElementById('error-message');
+    const schedulePlaceholder = document.querySelector('[data-fit1c-calendar]');
+    const scheduleFallback = document.getElementById('schedule-fallback');
+    
+    // Состояние приложения
+    const appState = {
+        currentScreen: 'screen-home',
+        scheduleLoadAttempted: false // Флаг для первой попытки загрузки
+    };
+    
     // ==============================================
-    // 2. ФУНКЦИЯ ПЕРЕКЛЮЧЕНИЯ ЭКРАНОВ
+    // 2. ФУНКЦИИ УТИЛИТЫ
     // ==============================================
-    function showScreen(screenId) {
+    
+    /**
+     * Показывает сообщение об ошибке
+     */
+    function showError(message, duration = 5000) {
+        if (!errorMessage) return;
         
-        // 1. Скрываем все экраны и ищем целевой
+        errorMessage.textContent = message;
+        errorMessage.style.display = 'block';
+        
+        console.error('Ошибка приложения:', message);
+        
+        if (duration > 0) {
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, duration);
+        }
+    }
+    
+    /**
+     * Проверяет, загрузился ли виджет расписания, и обрабатывает таймаут.
+     */
+    function checkScheduleLoadStatus() {
+        if (!schedulePlaceholder || !scheduleFallback) return;
+
+        // Проверяем, если ли внутри плейсхолдера еще наш текст 'Расписание загружается...'
+        // Если текста нет, значит, Fit1c его заменил своим контентом.
+        const isLoaded = !schedulePlaceholder.textContent.includes('Расписание загружается');
+        
+        if (!isLoaded) {
+            // Загрузка не удалась - показываем запасной вариант
+            console.error('Ошибка: Таймаут загрузки расписания Fit1c. Показываем запасной вариант.');
+            
+            // Скрываем loader и placeholder
+            schedulePlaceholder.style.display = 'none';
+            
+            // Показываем запасной вариант
+            scheduleFallback.style.display = 'block';
+            showError('Не удалось загрузить онлайн расписание. Попробуйте обновить страницу или позвоните нам.', 0); 
+        } else {
+            // Считаем, что загрузка прошла успешно
+            console.log('Расписание Fit1c успешно загружено.');
+        }
+    }
+
+    /**
+     * Запускает таймер для контроля загрузки расписания.
+     */
+    function startScheduleTimeout() {
+        if (appState.scheduleLoadAttempted) return;
+        
+        appState.scheduleLoadAttempted = true;
+        
+        setTimeout(() => {
+            // Даем Fit1c небольшую задержку после таймаута на случай позднего ответа
+            setTimeout(checkScheduleLoadStatus, 500); 
+        }, LOADING_TIMEOUT);
+    }
+    
+    /**
+     * Переключает экраны и обновляет нижнюю навигацию.
+     */
+    function showScreen(targetId) {
+        // 1. Скрываем все экраны
         screens.forEach(screen => {
             screen.classList.add('hidden');
+            screen.classList.remove('active');
         });
-        const targetScreen = document.getElementById(screenId);
-        
-        if (!targetScreen) {
-            console.error('Ошибка: Экран с ID ' + screenId + ' не найден.');
-            return;
+
+        // 2. Показываем целевой экран
+        const targetScreen = document.getElementById(targetId);
+        if (targetScreen) {
+            targetScreen.classList.remove('hidden');
+            targetScreen.classList.add('active');
+            appState.currentScreen = targetId;
         }
 
-        targetScreen.classList.remove('hidden');
-
-        // 2. Обновляем активную кнопку в футере
-        navButtons.forEach(btn => {
-            const target = 'screen-' + btn.getAttribute('data-target');
-            if (target === screenId) {
-                btn.classList.add('active');
+        // 3. Обновляем активную кнопку в навигации
+        navButtons.forEach(button => {
+            button.classList.remove('active');
+            if (button.getAttribute('data-target') === targetId.replace('screen-', '')) {
+                button.classList.add('active');
+                button.setAttribute('aria-current', 'page');
             } else {
-                btn.classList.remove('active');
+                button.removeAttribute('aria-current');
             }
         });
-            
-        // 3. Загрузка расписания
-        if (screenId === 'screen-schedule') {
-            loadSchedule(SALON_ID);
+
+        // 4. Логика для экрана расписания
+        if (targetId === 'screen-schedule') {
+            startScheduleTimeout();
         }
         
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Скрываем сообщение об ошибке, если оно было
+        if (errorMessage) {
+            errorMessage.style.display = 'none';
+        }
     }
     
     // ==============================================
-    // 3. НАЗНАЧЕНИЕ ОБРАБОТЧИКОВ (Самый простой способ)
+    // 3. ОБРАБОТЧИКИ СОБЫТИЙ
     // ==============================================
-
-    // А) Обработчики для кнопок футера (Главная, Расписание, Контакты)
+    
+    // 1. Навигация в футере
     navButtons.forEach(button => {
         button.addEventListener('click', () => {
-            const screenId = 'screen-' + button.getAttribute('data-target');
-            showScreen(screenId);
+            const target = 'screen-' + button.getAttribute('data-target');
+            showScreen(target);
         });
     });
 
-    // Б) Обработчики для быстрых ссылок и кнопок "Назад"
+    // 2. Быстрые ссылки и кнопки "Назад"
     quickLinks.forEach(button => {
         button.addEventListener('click', () => {
-            const screenId = button.getAttribute('data-target-screen');
-            showScreen(screenId);
+            const target = button.getAttribute('data-target-screen');
+            if (target) {
+                showScreen(target);
+            }
         });
     });
     
-    // ==============================================
-    // 4. ЛОГИКА ДИНАМИЧЕСКОЙ ЗАГРУЗКИ РАСПИСАНИЯ 1С
-    // ==============================================
-    function loadSchedule(salonId) {
-        const scriptContainerId = 'fit1c-config-script';
-        let script = document.getElementById(scriptContainerId);
+    // 3. Обработка загрузки страницы
+    showScreen('screen-home'); // Всегда стартуем с главного экрана
 
-        if (script) {
-            script.remove();
-        }
-
-        const widgetContainer = document.querySelector('[data-fit1c-calendar]');
-        if (widgetContainer) {
-            widgetContainer.innerHTML = 'Расписание загружается...';
-        }
-
-        script = document.createElement('script');
-        script.id = scriptContainerId;
-        script.src = 'https://reservi.ru/widget-fit1c.v2/js/config.js';
-        script.setAttribute('data-fit-salon-id', salonId);
-        
-        document.body.appendChild(script);
-    }
-
-    // ==============================================
-    // 5. ИНИЦИАЛИЗАЦИЯ
-    // ==============================================
+    // Обработчик для мобильного/десктопного баннера (если не используется <picture> - но у нас используется!)
+    // В данном случае эта логика не нужна, т.к. используется <picture> и CSS media queries.
     
-    // Показываем Главный экран по умолчанию
-    document.getElementById('screen-home').classList.remove('hidden');
-    // Делаем кнопку Главная активной
-    document.querySelector('.nav-button[data-target="home"]').classList.add('active');
+    console.log('Lady Stretch Hub v.2.1 запущен.');
 });

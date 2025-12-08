@@ -153,9 +153,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 3. Обработка загрузки страницы
     showScreen('screen-home'); // Всегда стартуем с главного экрана
-
-    // Обработчик для мобильного/десктопного баннера (если не используется <picture> - но у нас используется!)
-    // В данном случае эта логика не нужна, т.к. используется <picture> и CSS media queries.
     
     console.log('Lady Stretch Hub v.2.1 запущен.');
 });

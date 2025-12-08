@@ -1,5 +1,5 @@
 /* =========================================================
-// ПОЛНЫЙ КОД ДЛЯ LADY STRETCH HUB - style.css (ФИНАЛЬНЫЙ ИСПРАВЛЕННЫЙ)
+// ПОЛНЫЙ КОД ДЛЯ LADY STRETCH HUB - style.css (ФИНАЛЬНЫЙ СТИЛЬ)
 // ========================================================= */
 
 :root {
@@ -32,8 +32,8 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    padding-top: 85px; /* Компенсация фиксированной шапки */
-    padding-bottom: 70px; /* Компенсация фиксированного футера */
+    padding-top: 85px; 
+    padding-bottom: 70px; 
     transition: background-color 0.3s ease;
 }
 
@@ -111,7 +111,6 @@ p a:hover {
 // ========================================================= */
 #main-banner-container {
     width: 100%; 
-    height: auto; 
     margin-top: 5px; 
     margin-bottom: 20px;
     border-radius: var(--border-radius);
@@ -122,14 +121,15 @@ p a:hover {
     display: flex; 
     justify-content: center;
     align-items: center;
-    min-height: 300px;
+    /* Увеличенный минимальный размер, чтобы не было схлопывания при отсутствии файла */
+    min-height: 250px; 
     background: linear-gradient(145deg, var(--neo-light-shadow), var(--neo-bg-color));
 }
 
 #main-banner-container picture,
 #main-banner-image {
     width: 100%;
-    height: 100%;
+    height: auto; /* Адаптивная высота */
 }
 
 /* Мобильный размер (по умолчанию) */
@@ -141,93 +141,8 @@ p a:hover {
 }
 
 /* =========================================================
-// 3. СТИЛИ МЕРЦАЮЩЕЙ КНОПКИ
+// 3. СТИЛИ КНОПОК
 // ========================================================= */
-.primary-btn.pulsing-btn {
-    background-color: var(--pulsing-color); 
-    color: white; 
-    box-shadow: 
-        0 0 15px var(--accent-color), 
-        5px 5px 10px rgba(0, 0, 0, 0.2); 
-    animation: pulse 1.5s infinite alternate; 
-    position: relative;
-    overflow: hidden;
-}
-
-.primary-btn.pulsing-btn::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-        45deg,
-        transparent 30%,
-        rgba(255, 255, 255, 0.1) 50%,
-        transparent 70%
-    );
-    transform: rotate(45deg);
-    animation: shine 3s infinite;
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 0 8px var(--accent-color),
-                    0 0 10px var(--accent-color);
-    }
-    100% {
-        transform: scale(1.02);
-        box-shadow: 0 0 15px var(--accent-color),
-                    0 0 20px var(--accent-color);
-    }
-}
-
-@keyframes shine {
-    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-}
-
-/* СТИЛИ ПРОДАЮЩИХ БЛОКОВ */
-.sales-pitch {
-    text-align: center;
-    margin-top: 25px;
-    margin-bottom: 30px;
-    padding: 20px 15px;
-    background-color: var(--neo-light-shadow); 
-    border-radius: 15px;
-    box-shadow: inset 2px 2px 5px var(--neo-dark-shadow); 
-    line-height: 1.6;
-}
-
-.sales-pitch p {
-    margin: 10px 0;
-    color: var(--text-color);
-    font-size: 0.95em;
-}
-
-.screen {
-    width: 100%;
-    background-color: var(--neo-bg-color);
-    padding: 30px 20px;
-    border-radius: var(--border-radius);
-    margin-bottom: 20px;
-    box-shadow: 
-        var(--neomorphic-intensity) var(--neomorphic-intensity) calc(var(--neomorphic-intensity) * 2) var(--neo-dark-shadow),
-        calc(var(--neomorphic-intensity) * -1) calc(var(--neomorphic-intensity) * -1) calc(var(--neomorphic-intensity) * 2) var(--neo-light-shadow);
-    animation: fadeIn 0.4s ease;
-    transition: opacity 0.3s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.hidden {
-    display: none !important;
-}
 
 /* КНОПКИ (Выдавленный) */
 .action-button, 
@@ -244,17 +159,15 @@ p a:hover {
     color: var(--text-color);
     background-color: var(--neo-bg-color);
     text-decoration: none;
-    display: block;
+    display: flex; /* Используем flex для центрирования иконок/текста */
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    gap: 8px; /* Расстояние между иконкой и текстом */
     box-shadow: 
         5px 5px 10px var(--neo-dark-shadow),
         -5px -5px 10px var(--neo-light-shadow);
     transition: all 0.2s ease-in-out;
-}
-
-.action-button.large {
-    padding: 18px;
-    font-size: 1.1em;
 }
 
 /* ВДАВЛЕННЫЙ ЭФФЕКТ (При нажатии) */
@@ -274,42 +187,107 @@ p a:hover {
     transform: translateY(-2px);
 }
 
-/* ФУТЕР И СПЕЦИФИКА */
-
-/* КОНТЕЙНЕР РАСПИСАНИЯ */
-#schedule-container {
-    margin: 20px 0;
-    min-height: 500px;
+/* НОВЫЙ СТИЛЬ СОЦСЕТЕЙ: СВЕТЛЫЙ ФОН + ФИОЛЕТОВЫЙ АКЦЕНТ */
+.social-button:hover {
+    color: var(--primary-color); /* Фиолетовый текст при наведении */
     box-shadow: 
-        8px 8px 16px var(--neo-dark-shadow),
-        -8px -8px 16px var(--neo-light-shadow);
-    padding: 20px;
-    border-radius: var(--border-radius);
-    overflow: hidden; 
-    background: var(--neo-bg-color);
-    text-align: center; 
+        5px 5px 10px var(--neo-dark-shadow),
+        -5px -5px 10px var(--neo-light-shadow),
+        /* Плавное фиолетовое свечение */
+        0 0 10px 1px rgba(123, 31, 162, 0.3); 
+    transform: none; /* Убираем translateY, чтобы не конфликтовало с тенью */
 }
 
-/* КОНТЕЙНЕР ДЛЯ КАРТЫ */
-#map-container {
-    width: 100%;
-    margin-top: 15px;
-    margin-bottom: 20px;
-    height: 300px;
-    border-radius: var(--border-radius);
+/* СТИЛИ МЕРЦАЮЩЕЙ КНОПКИ (Оставлены для "Купить абонемент") */
+.primary-btn.pulsing-btn {
+    background-color: var(--pulsing-color); 
+    color: white; 
+    box-shadow: 
+        0 0 15px var(--accent-color), 
+        5px 5px 10px rgba(0, 0, 0, 0.2); 
+    animation: pulse 1.5s infinite alternate; 
+    position: relative;
     overflow: hidden;
-    box-shadow: 
-        inset 5px 5px 10px var(--neo-dark-shadow),
-        inset -5px -5px 10px var(--neo-light-shadow);
+}
+/* ... @keyframes pulse и @keyframes shine ... */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 8px var(--accent-color),
+                    0 0 10px var(--accent-color);
+    }
+    100% {
+        transform: scale(1.02);
+        box-shadow: 0 0 15px var(--accent-color),
+                    0 0 20px var(--accent-color);
+    }
 }
 
-#map-container iframe {
+@keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+/* УБРАТЬ ВСЕ ГРАДИЕНТЫ С ОСНОВНЫХ КНОПОК СОЦСЕТЕЙ */
+.social-tg-btn, 
+.social-vk-btn, 
+.social-max-btn, 
+.social-site-btn, 
+.social-yt-btn, 
+.social-ru-btn, 
+.social-dzen-btn, 
+.social-wa-btn {
+    background: var(--neo-bg-color); 
+    color: var(--text-color);
+}
+/* Только для кнопок скачивания приложений оставляем брендовые цвета */
+.app-store-btn { background: linear-gradient(135deg, #000000, #333333); color: white; }
+.ru-store-btn { background: linear-gradient(135deg, #ff3c00, #ff6b3d); color: white; }
+.app-gallery-btn { background: linear-gradient(135deg, #ff0000, #ff3333); color: white; }
+
+
+/* СТИЛИ ПРОДАЮЩИХ БЛОКОВ */
+.sales-pitch {
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 30px;
+    padding: 20px 15px;
+    background-color: var(--neo-light-shadow); 
+    border-radius: 15px;
+    box-shadow: inset 2px 2px 5px var(--neo-dark-shadow); 
+    line-height: 1.6;
+}
+
+/* СКРИНЫ И СЕТКИ */
+.screen {
     width: 100%;
-    height: 100%;
-    border: none;
+    background-color: var(--neo-bg-color);
+    padding: 30px 20px;
+    border-radius: var(--border-radius);
+    margin-bottom: 20px;
+    box-shadow: 
+        var(--neomorphic-intensity) var(--neomorphic-intensity) calc(var(--neomorphic-intensity) * 2) var(--neo-dark-shadow),
+        calc(var(--neomorphic-intensity) * -1) calc(var(--neomorphic-intensity) * -1) calc(var(--neomorphic-intensity) * 2) var(--neo-light-shadow);
+    animation: fadeIn 0.4s ease;
+    transition: opacity 0.3s ease;
 }
 
-/* ФУТЕР НАВИГАЦИЯ */
+.hidden {
+    display: none !important;
+}
+
+.social-links-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 12px; 
+    margin: 20px 0;
+}
+
+.full-width-grid {
+    grid-column: 1 / span 2; 
+}
+
+/* ФУТЕР И НАВИГАЦИЯ */
 #footer-nav {
     display: flex;
     justify-content: space-around;
@@ -350,65 +328,36 @@ p a:hover {
     font-weight: bold;
 }
 
-/* СТИЛИ СОЦСЕТЕЙ */
-.social-links-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 12px; 
+/* КОНТЕЙНЕР РАСПИСАНИЯ и КАРТЫ */
+#schedule-container {
     margin: 20px 0;
+    min-height: 500px;
+    box-shadow: 
+        8px 8px 16px var(--neo-dark-shadow),
+        -8px -8px 16px var(--neo-light-shadow);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    overflow: hidden; 
+    background: var(--neo-bg-color);
+    text-align: center; 
 }
 
-/* full-width-grid больше не используется на WhatsApp, но оставляем его для AppGallery */
-.full-width-grid {
-    grid-column: 1 / span 2; 
-}
-
-.social-button {
-    padding: 12px 8px; 
-    font-size: 0.9em; 
-    white-space: nowrap;
+#map-container {
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    height: 300px;
+    border-radius: var(--border-radius);
     overflow: hidden;
-    text-overflow: ellipsis;
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center; /* ДОПОЛНИТЕЛЬНАЯ БЕЗОПАСНОСТЬ ЦЕНТРИРОВАНИЯ */
+    box-shadow: 
+        inset 5px 5px 10px var(--neo-dark-shadow),
+        inset -5px -5px 10px var(--neo-light-shadow);
 }
 
-/* Специфичные цвета для кнопок соцсетей */
-.tg-btn { background: linear-gradient(135deg, #0088cc, #34b7f1); color: white; }
-.vk-btn { background: linear-gradient(135deg, #4a76a8, #5b88bd); color: white; }
-.site-btn { background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); color: white; }
-.yt-btn { background: linear-gradient(135deg, #ff0000, #ff4d4d); color: white; }
-.ru-btn { background: linear-gradient(135deg, #ff3347, #ff6677); color: white; }
-.dzen-btn { background: linear-gradient(135deg, #0a0a0a, #333333); color: white; }
-.wa-btn { background: linear-gradient(135deg, #25d366, #5af78e); color: white; }
-.max-btn { background: linear-gradient(135deg, #FF4500, #FF6347); color: white; } /* НОВЫЙ СТИЛЬ */
-.app-store-btn { background: linear-gradient(135deg, #000000, #333333); color: white; }
-.ru-store-btn { background: linear-gradient(135deg, #ff3c00, #ff6b3d); color: white; }
-.app-gallery-btn { background: linear-gradient(135deg, #ff0000, #ff3333); color: white; }
-
-/* ЦЕНТРАЛЬНЫЕ КОНТЕЙНЕРЫ */
-.center-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin: 20px 0;
-}
-
-/* СТИЛИ ДЛЯ СООБЩЕНИЙ */
-#error-message {
-    display: none;
-    background: rgba(255, 0, 0, 0.1);
-    border: 1px solid #ff4444;
-    color: #ff4444;
-    padding: 15px;
-    border-radius: 10px;
-    margin: 20px auto; 
-    text-align: center;
-    max-width: 90%;
+#map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 /* ЗАГРУЗЧИК */
@@ -437,7 +386,7 @@ p a:hover {
         max-width: 900px; 
         padding: 0 40px;
     }
-
+    
     /* Шапка и футер больше не фиксированы */
     #main-header {
         max-width: 900px; 
@@ -470,31 +419,13 @@ p a:hover {
         max-height: 500px; 
     }
     
-    #header-title {
-        font-size: 2em; 
-    }
-    
-    #header-logo {
-        height: 65px; 
-        width: 65px;
-    }
-    
     .social-links-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 15px;
     }
     
     .full-width-grid {
-        grid-column: span 1; /* На десктопе все кнопки должны быть 1/3, кроме AppGallery */
-    }
-    
-    .nav-button {
-        font-size: 1em;
-        padding: 15px 10px;
-    }
-    
-    .screen {
-        padding: 40px;
+        grid-column: span 1; 
     }
 }
 
